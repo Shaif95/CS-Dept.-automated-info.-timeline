@@ -1,5 +1,5 @@
 body {
- background-image: url("dark_back.jpg");
+  background-image: url("baylor_background.jpg");
  background-color: #ffffff ;
 
  background-repeat:no-repeat;
@@ -15,5 +15,59 @@ body {
 
 .nav.navbar-nav.navbar-right li a {
     color: blue !important;
+}
+
+.dropdown-menu {
+  width: 10px; 
+}
+
+
+
+img {
+    width: 300px; /* You can set the dimensions to whatever you want */
+    height: 400px;
+    object-fit: cover;
+}
+
+grant {
+    width: 300px; /* You can set the dimensions to whatever you want */
+    height: 400px;
+    object-fit: cover;
+}
+
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+
+.padding-1{
+    padding-right:0;
+    padding-left:150px;
+    padding-bottom: 150px;
+}
+
+.padding-top{
+    padding-bottom: 20px;
+}
+
+
+
+label { color: floralwhite; 
+
+font-weight: bold;
+
+}
+label span { color: floralwhite; 
+
+font-weight: bold;
+
+}
+
+event { color: floralwhite; 
+
+font-weight: bold;
+
 }
 

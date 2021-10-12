@@ -15,9 +15,17 @@ body {
 }
 
 
-.carousel img {
-        width:100% !important;
-        min-width:100 !important;
-        height: 300px;
-    }
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+
+.padding-1{
+    padding-right:0;
+    padding-left:50px;
+}
+
+
 
