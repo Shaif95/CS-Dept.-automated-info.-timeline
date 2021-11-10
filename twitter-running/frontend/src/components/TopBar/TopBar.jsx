@@ -59,7 +59,7 @@ const TopBar = () => {
                     <MonetizationOn /> Grant
                   </Link>
                 </div>
-                {userInfo && userInfo.isAdmin == true ? (
+                {userInfo && userInfo.isAdmin === true ? (
                   <div className='icon-container p-2  text-light'>
                     <Link className='nav-link-style' to='/academic'>
                       <LocalLibraryIcon /> Academic
