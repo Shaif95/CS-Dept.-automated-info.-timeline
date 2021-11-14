@@ -4,8 +4,8 @@ CS Department automated information timeline.
 
 Run it with :
 
-cd react-frontend
+cd twitter-running
 
-yarn install
+npm install
 
 yarn start
