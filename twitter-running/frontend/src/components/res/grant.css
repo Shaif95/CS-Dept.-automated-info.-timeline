@@ -1,0 +1,53 @@
+
+@media (min-width: 992px){
+    .navbar li {
+        margin-left : 2em;
+        margin-right : 2em;
+    }
+}
+
+.padding-top{
+    padding-bottom: 20px;
+}
+
+
+.nav.navbar-nav.navbar-right li a {
+    color: blue !important;
+}
+
+
+label { color: floralwhite; 
+
+font-weight: bold;
+
+}
+label span { color: floralwhite; 
+
+font-weight: bold;
+
+}
+
+event { color: floralwhite; 
+
+font-weight: bold;
+
+}
+
+.padding-0{
+    padding-bottom: 10px;
+    padding-left: 200px;
+    padding-right: 20px;
+}
+
+
+
+textarea {
+  border:2px;
+  width:50%;
+  height:80%;
+  margin-left:10%;
+  margin-right:10%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
