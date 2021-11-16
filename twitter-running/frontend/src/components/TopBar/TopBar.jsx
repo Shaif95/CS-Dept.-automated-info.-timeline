@@ -55,6 +55,26 @@ const TopBar = () => {
                  API</a></div>
 
 
+<div className='icon-container'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/'>
+                   Home
+                  </Link>
+                </div>
+                </div>
+
+
+
+              <div className='icon-wrapper'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/events'>
+                    <Event /> Events
+                  </Link>
+                </div>
+
+
+
+
 
                 <div className='icon-container'>
                 <div className='icon-container p-2 mr-2 text-light'>
@@ -72,14 +92,6 @@ const TopBar = () => {
                   </Link>
                 </div>
                  </div>
-
-
-              <div className='icon-wrapper'>
-                <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/events'>
-                    <Event /> Event
-                  </Link>
-                </div>
 
 
             
