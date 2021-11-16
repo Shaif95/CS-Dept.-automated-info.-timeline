@@ -2,19 +2,16 @@
 CS Department automated information timeline.
 
 
+#### Run Main Backend with :
+
+> cd backend
+> npm install
+> yarn start
+
+
 #### Run Main Frontend with :
 
-#### Intall Backend Dependencies
-> Go to root directory
->In git-bash or cmd run 'npm install'
-#### Intall Frontend Dependencies
->Go to 'frontend' folder ('cd frontend' in cmd)
->In git-bash or cmd run 'npm install'
-
-## Run Scrips 
-### Run Server
->In git-bash or cmd run 'npm run server'
-### Run Client
->In git-bash or cmd run 'npm run client'
-### Run both Server and Client 
->In git-bash or cmd run 'npm run dev'
+> cd frontend
+> npm install
+> npm install @mui/material @emotion/react @emotion/styled
+> yarn start
