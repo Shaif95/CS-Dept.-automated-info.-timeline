@@ -31,7 +31,7 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-      setPost(response.data);
+      setPost(response.data.events);
     });
   }, []);
 
@@ -39,7 +39,6 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
 
 
 
- const events1 = axios.get("https://baylor-board.herokuapp.com/events");
 
 
 
