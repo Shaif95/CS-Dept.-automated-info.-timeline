@@ -14,7 +14,8 @@ class CreateEmployeeComponent extends Component {
             id: this.props.match.params.id,
             title: '',
             coordinator: '',
-            description: ''
+            description: '',
+            images : ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
@@ -32,14 +33,15 @@ class CreateEmployeeComponent extends Component {
                 let employee = res.data;
                 this.setState({title: employee.title,
                     coordinator: employee.coordinator,
-                    description : employee.description
+                    description : employee.description,
+                    images : employee.images
                 });
             });
         }        
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description};
+    let employee = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description, images : this.state.images};
         console.log('employee => ' + JSON.stringify(employee));
 
         // step 5
@@ -60,6 +62,14 @@ class CreateEmployeeComponent extends Component {
 
     changeLastNameHandler= (event) => {
         this.setState({coordinator: event.target.value});
+    }
+
+    changeImageHandler= (event) => {
+
+        const img =[];
+        img.push(event.target.value)
+
+        this.setState({images: img});
     }
 
     changeEmailHandler= (event) => {
@@ -111,13 +121,13 @@ class CreateEmployeeComponent extends Component {
                 />
                                         </div>
 
-
-                                <div className = "form-group">
-                                            <label style={{color: 'black'}}> Event Date: </label>
-                                            <input placeholder="Date" name="description" className="form-control" />
+                        <div className = "form-group">
+                                            <label style={{color: 'black'}} > Event Image: </label>
+                                            <input placeholder="https://ibb.co/vsjK0Fb" name="images" className="form-control" 
+                                                value={this.state.images} onChange={this.changeImageHandler}/>
                                         </div>
 
-
+                                
 
 
                                         <button className="btn btn-success" onClick={this.saveOrUpdateEmployee}>Save</button>

@@ -121,7 +121,7 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                   <p className='carousel-text'>
                    
 <div>
- <h2 className="text-center"> Recent Events </h2>
+ <h2 className="text-center"> List of Events </h2>
 <div className = "row">
                         <table className = "table table-striped table-bordered">
 
@@ -160,6 +160,38 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
               </Carousel.Item>
 
 
+
+            <Carousel.Item>
+
+
+                <Row className='card-container'>
+            {events.reverse().slice(0,3).map((event) => (
+              <Col  key={event.id}>
+                <Card className="h-100">
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      Event Title: {event.title}
+                    </Card.Title>
+                    <Card.Text className='text-dark'>
+                      Event Coordinator: <span>{event.coordinator}</span>
+                    </Card.Text>
+                    <Card.Subtitle className='text-dark'>
+                      Event Description: {event.description}
+                    </Card.Subtitle>
+               
+            <img  src={event.images}   style= {{ height: "50% "}} alt= {"Image Missing"} ></img>
+                 
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+
+          </Row>
+
+              
+              </Carousel.Item>
+
+        
 
 
 
