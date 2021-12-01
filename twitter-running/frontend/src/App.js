@@ -50,7 +50,7 @@ function App() {
             <Route exact path='/forbidden' component={Forbidden} />
 
 
-            <Route path = "/grants"  exact component = {ListGrantsComponent}></Route>                                
+            <Route path = "/awards"  exact component = {ListGrantsComponent}></Route>                                
             <Route path = "/events" exact  component = {ListEventComponent}></Route> 
             <Route path = "/home" exact component = {HomeComponent}></Route>                                               
             <Route path = "/add-events/:id" component = {CreateEventComponent}></Route>

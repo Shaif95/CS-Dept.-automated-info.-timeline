@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const Grant_API_BASE_URL = "http://localhost:8080/Grants";
+const Grant_API_BASE_URL = "http://localhost:8080/awards";
 
 class GrantService {
 

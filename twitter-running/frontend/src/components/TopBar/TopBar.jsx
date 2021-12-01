@@ -93,10 +93,19 @@ const TopBar = () => {
                 </div>
 
 
+                <div className='icon-container'>
+ <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/awards'>
+                    <MonetizationOn /> Awards
+                  </Link>
+                </div>
+                 </div>
+
+
 <div className='icon-container'>
  <div className='icon-container p-2 mr-2 text-light'>
                   <Link className='nav-link-style' to='add-grants/_add'>
-                    <MonetizationOn /> Add Grant
+                    <MonetizationOn /> Add Award
                   </Link>
                 </div>
                  </div>

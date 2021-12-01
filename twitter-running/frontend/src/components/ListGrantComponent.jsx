@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventService from '../services/EventService'
+import GrantService from '../services/GrantService'
 import './res/grant.css'
 
 class ListGrantComponent extends Component {
@@ -7,41 +7,41 @@ class ListGrantComponent extends Component {
         super(props)
 
         this.state = {
-                event: []
+                Grant: []
         }
-        this.addEvent = this.addEvent.bind(this);
-        this.editEvent = this.editEvent.bind(this);
-        this.deleteEvent = this.deleteEvent.bind(this);
+        this.addGrant = this.addGrant.bind(this);
+        this.editGrant = this.editGrant.bind(this);
+        this.deleteGrant = this.deleteGrant.bind(this);
     }
 
-    deleteEvent(id){
-        EventService.deleteEvent(id).then( res => {
-            this.setState({event: this.state.event.filter(event => event.id !== id)});
+    deleteGrant(id){
+        GrantService.deleteGrant(id).then( res => {
+            this.setState({Grant: this.state.Grant.filter(Grant => Grant.id !== id)});
         });
     }
-    viewEvent(id){
-        this.props.history.push(`/view-events/${id}`);
+    viewGrant(id){
+        this.props.history.push(`/view-grants/${id}`);
     }
-    editEvent(id){
-        this.props.history.push(`/update-events/${id}`);
+    editGrant(id){
+        this.props.history.push(`/update-grants/${id}`);
     }
 
     componentDidMount(){
-        EventService.getEvent().then((res) => {
-            this.setState({ event: res.data.events});
+        GrantService.getGrant().then((res) => {
+            this.setState({ Grant: res.data.awards});
         });
     }
 
-    addEvent(){
-        this.props.history.push('/add-events/_add');
+    addGrant(){
+        this.props.history.push('/add-Grants/_add');
     }
 
     render() {
         return (
             <div>
-                 <h2 className="text-center">Event List</h2>
+                 <h2 className="text-center">Awards List</h2>
                  <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addEvent}> Add Event</button>
+                    <button className="btn btn-primary" onClick={this.addGrant}> Add Award</button>
                  </div>
                  <br></br>
                  <div className = "row">
@@ -49,24 +49,24 @@ class ListGrantComponent extends Component {
 
                             <thead>
                                 <tr>
-                                    <th> Event Title</th>
-                                    <th> Event Coordinator</th>
-                                    <th> Event Description</th>
+                                    <th> Award Title</th>
+                                    <th> Award Coordinator</th>
+                                    <th> Award Description</th>
                                     <th> Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.state.event.map(
-                                        event => 
-                                        <tr key = {event.id}>
-                                             <td> {event.title} </td>   
-                                             <td> {event.coordinator}</td>
-                                             <td> {event.description}</td>
+                                    this.state.Grant.map(
+                                        Grant => 
+                                        <tr key = {Grant.id}>
+                                             <td> {Grant.title} </td>   
+                                             <td> {Grant.coordinator}</td>
+                                             <td> {Grant.description}</td>
                                              <td>
- <button onClick={ () => this.editEvent(event.id)} className="btn btn-info">Update </button>
- <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEvent(event.id)} className="btn btn-danger">Delete </button>
- <button style={{marginLeft: "10px"}} onClick={ () => this.viewEvent(event.id)} className="btn btn-info">View </button>
+ <button onClick={ () => this.editGrant(Grant.id)} className="btn btn-info">Update </button>
+ <button style={{marginLeft: "10px"}} onClick={ () => this.deleteGrant(Grant.id)} className="btn btn-danger">Delete </button>
+ <button style={{marginLeft: "10px"}} onClick={ () => this.viewGrant(Grant.id)} className="btn btn-info">View </button>
                                              </td>
                                         </tr>
                                     )

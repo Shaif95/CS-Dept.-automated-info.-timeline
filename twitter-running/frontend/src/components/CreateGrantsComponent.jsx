@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventService from '../services/EventService';
+import GrantService from '../services/GrantService';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -19,7 +19,7 @@ class CreateGrantsComponent extends Component {
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
-        this.saveOrUpdateEvent = this.saveOrUpdateEvent.bind(this);
+        this.saveOrUpdateGrant = this.saveOrUpdateGrant.bind(this);
     }
 
     // step 3
@@ -29,7 +29,7 @@ class CreateGrantsComponent extends Component {
         if(this.state.id === '_add'){
             return
         }else{
-            EventService.getEventById(this.state.id).then( (res) =>{
+            GrantService.getGrantById(this.state.id).then( (res) =>{
                 let em = res.data;
                 this.setState({title: em.title,
                     coordinator: em.coordinator,
@@ -39,52 +39,52 @@ class CreateGrantsComponent extends Component {
             });
         }        
     }
-    saveOrUpdateEvent = (e) => {
-        e.preventDefault();
+    saveOrUpdateGrant = (e) => {
+        e.prGrantDefault();
     let em = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description, images : this.state.images};
-        console.log('event => ' + JSON.stringify(em));
+        console.log('Grant => ' + JSON.stringify(em));
 
         // step 5
         if(this.state.id === '_add'){
-            EventService.createEvent(em).then(res =>{
-                this.props.history.push('/events');
+            GrantService.createGrant(em).then(res =>{
+                this.props.history.push('/awards');
             });
         }else{
-            EventService.updateEvent(em, this.state.id).then( res => {
-                this.props.history.push('/events');
+            GrantService.updateGrant(em, this.state.id).then( res => {
+                this.props.history.push('/awards');
             });
         }
     }
     
-    changeFirstNameHandler= (event) => {
-        this.setState({title: event.target.value});
+    changeFirstNameHandler= (Grant) => {
+        this.setState({title: Grant.target.value});
     }
 
-    changeLastNameHandler= (event) => {
-        this.setState({coordinator: event.target.value});
+    changeLastNameHandler= (Grant) => {
+        this.setState({coordinator: Grant.target.value});
     }
 
-    changeImageHandler= (event) => {
+    changeImageHandler= (Grant) => {
 
         const img =[];
-        img.push(event.target.value)
+        img.push(Grant.target.value)
 
         this.setState({images: img});
     }
 
-    changeEmailHandler= (event) => {
-        this.setState({description: event.target.value});
+    changeEmailHandler= (Grant) => {
+        this.setState({description: Grant.target.value});
     }
 
     cancel(){
-        this.props.history.push('/events');
+        this.props.history.push('/awards');
     }
 
     getTitle(){
         if(this.state.id === '_add'){
-            return <h3 className="text-center">Event Information Form</h3>
+            return <h3 className="text-center">Award Information Form</h3>
         }else{
-            return <h3 className="text-center">Event Information Form</h3>
+            return <h3 className="text-center">Award Information Form</h3>
         }
     }
     render() {
@@ -97,22 +97,22 @@ class CreateGrantsComponent extends Component {
                                 }
                                     <form>
                                         <div className = "form-group">
-                                            <label style={{color: 'black'}} > Event Title: </label>
+                                            <label style={{color: 'black'}} > Award Title: </label>
                                             <input placeholder="Title" name="title" className="form-control" 
                                                 value={this.state.title} onChange={this.changeFirstNameHandler}/>
                                         </div>
                                         <div className = "form-group">
-                                            <label style={{color: 'black'}} > Event Coordinator: </label>
+                                            <label style={{color: 'black'}} > Award Coordinator: </label>
                                             <input placeholder="coordinator" name="coordinator" className="form-control" 
                                                 value={this.state.coordinator} onChange={this.changeLastNameHandler}/>
                                         </div>
                                         <div className = "form-group">
-                                            <label style={{color: 'black'}} > Event Description: </label>
+                                            <label style={{color: 'black'}} > Award Description: </label>
                                            <CKEditor name="description" 
                     editor={ ClassicEditor }
                 placeholder="Description" 
                 value={this.state.description}
-                onChange={ ( event, editor ) => {
+                onChange={ ( Grant, editor ) => {
                         const data = editor.getData();
                         this.setState({description: data});
                     } }
@@ -122,7 +122,7 @@ class CreateGrantsComponent extends Component {
                                         </div>
 
                         <div className = "form-group">
-                                            <label style={{color: 'black'}} > Event Image: </label>
+                                            <label style={{color: 'black'}} > Award Image: </label>
                                             <input placeholder=" url, example : https://ibb.co/vsjK0Fb" name="images" className="form-control" 
                                                 value={this.state.images} onChange={this.changeImageHandler}/>
 
@@ -132,7 +132,7 @@ class CreateGrantsComponent extends Component {
                                 
 
 
-                                        <button className="btn btn-success" onClick={this.saveOrUpdateEvent}>Save</button>
+                                        <button className="btn btn-success" onClick={this.saveOrUpdateGrant}>Save</button>
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                     </form>
                             

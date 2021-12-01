@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventService from '../services/EventService'
+import GrantService from '../services/GrantService'
 import './res/grant.css'
 
 class ViewGrantComponent extends Component {
@@ -8,13 +8,13 @@ class ViewGrantComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            event: {}
+            Grant: {}
         }
     }
 
     componentDidMount(){
-        EventService.getEventById(this.state.id).then( res => {
-            this.setState({event: res.data});
+        GrantService.getGrantById(this.state.id).then( res => {
+            this.setState({Grant: res.data});
         })
     }
 
@@ -23,24 +23,24 @@ class ViewGrantComponent extends Component {
             <div>
                 <br></br>
                 <div  style={{color: 'black'}} className = "card col-md-6 offset-md-3">
-                    <h3 className = "text-center"> View Event Details</h3>
+                    <h3 className = "text-center"> View Grant Details</h3>
                     <div className = "card-body">
                         <div className = "row">
-                            <label style={{color: 'black'}} > Event Title: </label>
-                            <div> { this.state.event.title }</div>
+                            <label style={{color: 'black'}} > Awards Title: </label>
+                            <div> { this.state.Grant.title }</div>
                         </div>
                         <div className = "row">
-                            <label style={{color: 'black'}} > Event Coordinator: </label>
-                            <div> { this.state.event.coordinator }</div>
+                            <label style={{color: 'black'}} > Awards Coordinator: </label>
+                            <div> { this.state.Grant.coordinator }</div>
                         </div>
                         <div className = "row">
-                            <label style={{color: 'black'}} > Event Description: </label>
-                            <div> { this.state.event.description }</div>
+                            <label style={{color: 'black'}} > Awards Description: </label>
+                            <div> { this.state.Grant.description }</div>
                         </div>
 
                         <div className = "row">
-                            <label style={{color: 'black'}} > Event Image: </label>
-                            <div> <img  src={this.state.event.images}   style= {{ height: "50% "}}  ></img></div>
+                            <label style={{color: 'black'}} > Awards Image: </label>
+                            <div> <img  src={this.state.Grant.images}   style= {{ height: "50% "}}  ></img></div>
                         </div>
                     </div>
 
