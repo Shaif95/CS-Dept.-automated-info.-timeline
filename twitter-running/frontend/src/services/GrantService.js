@@ -1,28 +1,28 @@
 import axios from 'axios';
 
-const EMPLOYEE_API_BASE_URL = "https://baylor-board.herokuapp.com/grants";
+const Grant_API_BASE_URL = "http://localhost:8080/Grants";
 
-class EmployeeService {
+class GrantService {
 
-    getEmployees(){
-        return axios.get(EMPLOYEE_API_BASE_URL);
+    getGrant(){
+        return axios.get(Grant_API_BASE_URL);
     }
 
-    createEmployee(employee){
-        return axios.post(EMPLOYEE_API_BASE_URL, employee);
+    createGrant(em){
+        return axios.post(Grant_API_BASE_URL, em);
     }
 
-    getEmployeeById(employeeId){
-        return axios.get(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    getGrantById(emId){
+        return axios.get(Grant_API_BASE_URL + '/' + emId);
     }
 
-    updateEmployee(employee, employeeId){
-        return axios.put(EMPLOYEE_API_BASE_URL + '/' +  employeeId,  employee);
+    updateGrant(em, emId){
+        return axios.put(Grant_API_BASE_URL + '/' +  emId,  em);
     }
 
-    deleteEmployee(employeeId){
-        return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
+    deleteGrant(emId){
+        return axios.delete(Grant_API_BASE_URL + '/' + emId);
     }
 }
 
-export default new EmployeeService()
+export default new GrantService()

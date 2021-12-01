@@ -3,7 +3,7 @@ import EventService from '../services/EventService';
 import './res/grant.css'
 import axios from 'axios';
 
-class UpdateGrantComponent extends Component {
+class UpdateEventComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -95,4 +95,4 @@ class UpdateGrantComponent extends Component {
     }
 }
 
-export default UpdateGrantComponent
+export default UpdateEventComponent

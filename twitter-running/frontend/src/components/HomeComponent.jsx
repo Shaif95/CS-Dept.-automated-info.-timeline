@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
+import { Container, Row, Col, Card} from 'react-bootstrap'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { listTweets } from './actions/userActions'
-import Meta from './Meta'
-import banner1 from './assets/img/banner1.jpg'
-import banner2 from './assets/img/banner2.jpg'
+import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel';
-import EmployeeService from '../services/EmployeeService'
 import Image from './la.jpg'
+import Image1 from './chicago.jpg'
 
 
 
@@ -20,46 +16,38 @@ class HomeComponent extends Component {
     constructor(props) {
         super(props)
 
-        
 
         this.state = {
-                employees: []
+                events: [],
+                tweets: []
         }
-        this.addEmployee = this.addEmployee.bind(this);
-        this.editEmployee = this.editEmployee.bind(this);
-        this.deleteEmployee = this.deleteEmployee.bind(this);
-    }
-
-
-
-    deleteEmployee(id){
-        EmployeeService.deleteEmployee(id).then( res => {
-            this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
-        });
-    }
-    viewEmployee(id){
-        this.props.history.push(`/view-employee/${id}`);
-    }
-    editEmployee(id){
-        this.props.history.push(`/add-employee/${id}`);
+    
     }
 
     componentDidMount(){
-        EmployeeService.getEmployees().then((res) => {
-            this.setState({ employees: res.data.events});
-        });
+        
+        axios.get(`http://localhost:8080/events`)
+      .then(res => {
+        this.setState({ events: res.data.events});
+      })
+
+        axios.get(`http://localhost:8080/tweets`)
+      .then(res => {
+        this.setState({ tweets: res.data.tweets});
+      })
+
+
+
     }
 
-    addEmployee(){
-        this.props.history.push('/add-employee/_add');
-    }
+    
 
 
     render() {
         return (
         
 
-<Carousel>
+<Carousel autoPlay interval="5000" transitionTime="2000" infiniteLoop = "true" >
 
                 
 
@@ -68,21 +56,39 @@ class HomeComponent extends Component {
 
                 <div>
                     <img src={Image} />
-                    <p className="legend">Legend 1</p>
                 </div>
                 <div>
-                    <img src={Image} />
-                    <p className="legend">Legend 2</p>
+                    <img src={Image1} />
                 </div>
-                <div>
-                    <img src={Image}  />
-                    <p className="legend">Legend 3</p>
-                </div>
+
                 
+                <div>
+                   
+                <Row className='card-container'>
+            {this.state.tweets.map((tweet) => (
+              <Col lg={4} md={6} key={tweet.id}>
+                <Card>
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      UserName : {tweet.user}
+                    </Card.Title>
+                    <Card.Text className='text-dark'>
+                      Tweet: <span>{tweet.text}</span>
+                    </Card.Text>
+                    <Card.Subtitle className='text-dark'>
+                      Status: {tweet.status}
+                    </Card.Subtitle>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+
+                </div>
 
 
                  <div>
- <h2 className="text-center"> Recent Events </h2>
+ <h2 className="text-center"> List of Events </h2>
 <div className = "row">
                         <table className = "table table-striped table-bordered">
 
@@ -91,20 +97,18 @@ class HomeComponent extends Component {
                                     <th> Event Title </th>
                                     <th> Event Coordinator </th>
                                     <th> Event Description </th>
-                                    <th> Actions </th>
+                                 
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    this.state.employees.map(
-                                        employee => 
-                                        <tr key = {employee.id}>
-                                             <td> { employee.title} </td>   
-                                             <td> {employee.coordinator}</td>
-                                             <td> {employee.description}</td>
-                                             <td>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(employee.id)} className="btn btn-info">View </button>
-                                             </td>
+                                    this.state.events.reverse().map(
+                                        events => 
+                                        <tr key = {events.id}>
+                                             <td> { events.title} </td>   
+                                             <td> {events.coordinator}</td>
+                                             <td> {events.description}</td>
+                                            
                                         </tr>
                                     )
                                 }
@@ -116,6 +120,39 @@ class HomeComponent extends Component {
                 </div>
 
                 
+
+                <div>
+
+
+
+         <Row className='card-container'>
+            {this.state.events.slice(0,3).map((event) => (
+              <Col  key={event.id}>
+                <Card className="h-100">
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      Event Title: {event.title}
+                    </Card.Title>
+                    <Card.Text className='text-dark'>
+                      Event Coordinator: <span>{event.coordinator}</span>
+                    </Card.Text>
+                    <Card.Subtitle className='text-dark'>
+                      Event Description: {event.description}
+                    </Card.Subtitle>
+               
+            <img  src={event.images}   style= {{ height: "50% "}}  ></img>
+                 
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+
+
+                </div>
+
+
+
 
             </Carousel>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import EventService from '../services/EventService'
 import './res/grant.css'
 
-class ListGrantComponent extends Component {
+class ListEventComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -81,4 +81,4 @@ class ListGrantComponent extends Component {
     }
 }
 
-export default ListGrantComponent
+export default ListEventComponent

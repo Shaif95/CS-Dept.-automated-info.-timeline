@@ -23,11 +23,11 @@ import {
 
 
 
-import ListEmployeeComponent from './components/ListEmployeeComponent';
+import ListEventComponent from './components/ListEventComponent';
 import HomeComponent from './components/HomeComponent';
-import CreateEmployeeComponent from './components/CreateEmployeeComponent';
-import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
-import ViewEmployeeComponent from './components/ViewEmployeeComponent';
+import CreateEventComponent from './components/CreateEventComponent';
+import UpdateEventComponent from './components/UpdateEventComponent';
+import ViewEventComponent from './components/ViewEventComponent';
 import ListGrantsComponent from './components/ListGrantComponent';
 import CreateGrantsComponent from './components/CreateGrantsComponent';
 import UpdateGrantComponent from './components/UpdateGrantComponent';
@@ -51,12 +51,12 @@ function App() {
 
 
             <Route path = "/grants"  exact component = {ListGrantsComponent}></Route>                                
-            <Route path = "/events" exact  component = {ListEmployeeComponent}></Route> 
+            <Route path = "/events" exact  component = {ListEventComponent}></Route> 
             <Route path = "/home" exact component = {HomeComponent}></Route>                                               
-            <Route path = "/add-events/:id" component = {CreateEmployeeComponent}></Route>
+            <Route path = "/add-events/:id" component = {CreateEventComponent}></Route>
             <Route path = "/add-grants/:id" component = {CreateGrantsComponent}></Route>
-            <Route path = "/view-events/:id" component = {ViewEmployeeComponent}></Route>                                       
-            <Route path = "/update-events/:id" component = {UpdateEmployeeComponent}></Route>
+            <Route path = "/view-events/:id" component = {ViewEventComponent}></Route>                                       
+            <Route path = "/update-events/:id" component = {UpdateEventComponent}></Route>
             <Route path = "/view-grants/:id" component = {ViewGrantComponent}></Route>                                       
             <Route path = "/update-grants/:id" component = {UpdateGrantComponent}></Route>
            

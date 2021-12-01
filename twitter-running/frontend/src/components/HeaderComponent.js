@@ -6,7 +6,7 @@ import {
       Route,
       Link
     } from "react-router-dom";
-import EmployeeService from '../services/EmployeeService'
+import EmployeeService from '../services/EventService'
 import './res/grant.css'
 
 class HeaderComponent extends Component {

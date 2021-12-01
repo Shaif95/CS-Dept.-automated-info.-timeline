@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import EventService from '../services/EventService'
 import './res/grant.css'
 
-class ViewGrantComponent extends Component {
+class ViewEventComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -50,4 +50,4 @@ class ViewGrantComponent extends Component {
     }
 }
 
-export default ViewGrantComponent
+export default ViewEventComponent

@@ -5,7 +5,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './res/grant.css'
 
-class CreateGrantsComponent extends Component {
+class CreateEventComponent extends Component {
     constructor(props) {
         super(props)
 
@@ -142,4 +142,4 @@ class CreateGrantsComponent extends Component {
     }
 }
 
-export default CreateGrantsComponent
+export default CreateEventComponent
