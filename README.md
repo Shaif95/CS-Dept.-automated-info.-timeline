@@ -8,7 +8,7 @@ cd backend
 
 npm install
 
-yarn start
+npm start
 
 
 #### Run Main Frontend with :
@@ -17,6 +17,4 @@ cd frontend
 
 npm install
 
-npm install @mui/material @emotion/react @emotion/styled
-
-yarn start
+npm start
