@@ -13,9 +13,7 @@ class CreateGrantsComponent extends Component {
             // step 2
             id: this.props.match.params.id,
             title: '',
-            coordinator: '',
             description: '',
-            images : ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
@@ -32,16 +30,14 @@ class CreateGrantsComponent extends Component {
             GrantService.getGrantById(this.state.id).then( (res) =>{
                 let em = res.data;
                 this.setState({title: em.title,
-                    coordinator: em.coordinator,
                     description : em.description,
-                    images : em.images
                 });
             });
         }        
     }
     saveOrUpdateGrant = (e) => {
         e.prGrantDefault();
-    let em = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description, images : this.state.images};
+    let em = {title: this.state.title,  description: this.state.description};
         console.log('Grant => ' + JSON.stringify(em));
 
         // step 5
@@ -69,7 +65,7 @@ class CreateGrantsComponent extends Component {
         const img =[];
         img.push(Grant.target.value)
 
-        this.setState({images: img});
+    
     }
 
     changeEmailHandler= (Grant) => {
@@ -101,11 +97,7 @@ class CreateGrantsComponent extends Component {
                                             <input placeholder="Title" name="title" className="form-control" 
                                                 value={this.state.title} onChange={this.changeFirstNameHandler}/>
                                         </div>
-                                        <div className = "form-group">
-                                            <label style={{color: 'black'}} > Award Coordinator: </label>
-                                            <input placeholder="coordinator" name="coordinator" className="form-control" 
-                                                value={this.state.coordinator} onChange={this.changeLastNameHandler}/>
-                                        </div>
+                                        
                                         <div className = "form-group">
                                             <label style={{color: 'black'}} > Award Description: </label>
                                            <CKEditor name="description" 
@@ -121,13 +113,7 @@ class CreateGrantsComponent extends Component {
                 />
                                         </div>
 
-                        <div className = "form-group">
-                                            <label style={{color: 'black'}} > Award Image: </label>
-                                            <input placeholder=" url, example : https://ibb.co/vsjK0Fb" name="images" className="form-control" 
-                                                value={this.state.images} onChange={this.changeImageHandler}/>
-
-          <label style={{color: 'black'}} > in case of no image , put default image url : https://i.ibb.co/nCNb8KX/photo-1541963463532-d68292c34b19-ixlib-rb-1-2.jpg </label>
-                                        </div>
+                        
 
                                 
 

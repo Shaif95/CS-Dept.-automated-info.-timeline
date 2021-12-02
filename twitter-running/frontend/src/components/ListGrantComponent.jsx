@@ -50,7 +50,6 @@ class ListGrantComponent extends Component {
                             <thead>
                                 <tr>
                                     <th> Award Title</th>
-                                    <th> Award Coordinator</th>
                                     <th> Award Description</th>
                                     <th> Actions</th>
                                 </tr>
@@ -61,7 +60,6 @@ class ListGrantComponent extends Component {
                                         Grant => 
                                         <tr key = {Grant.id}>
                                              <td> {Grant.title} </td>   
-                                             <td> {Grant.coordinator}</td>
                                              <td> {Grant.description}</td>
                                              <td>
  <button onClick={ () => this.editGrant(Grant.id)} className="btn btn-info">Update </button>

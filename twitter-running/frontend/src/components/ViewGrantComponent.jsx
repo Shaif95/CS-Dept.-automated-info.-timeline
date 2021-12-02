@@ -29,19 +29,13 @@ class ViewGrantComponent extends Component {
                             <label style={{color: 'black'}} > Awards Title: </label>
                             <div> { this.state.Grant.title }</div>
                         </div>
-                        <div className = "row">
-                            <label style={{color: 'black'}} > Awards Coordinator: </label>
-                            <div> { this.state.Grant.coordinator }</div>
-                        </div>
+            
                         <div className = "row">
                             <label style={{color: 'black'}} > Awards Description: </label>
                             <div> { this.state.Grant.description }</div>
                         </div>
 
-                        <div className = "row">
-                            <label style={{color: 'black'}} > Awards Image: </label>
-                            <div> <img  src={this.state.Grant.images}   style= {{ height: "50% "}}  ></img></div>
-                        </div>
+                       
                     </div>
 
                 </div>
