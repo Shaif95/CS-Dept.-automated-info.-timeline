@@ -1,6 +1,7 @@
 # CS-Dept.-automated-info.-timeline
 CS Department automated information timeline.
 
+[![Build Status]
 
 #### Run Main Backend with :
 
