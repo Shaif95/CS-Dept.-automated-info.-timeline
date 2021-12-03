@@ -130,7 +130,7 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                                     <th> Event Title </th>
                                     <th> Event Coordinator </th>
                                     <th> Event Description </th>
-                                    <th> Actions </th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,9 +141,7 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                                              <td> { events.title} </td>   
                                              <td> {events.coordinator}</td>
                                              <td> {events.description}</td>
-                                             <td>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(events.id)} className="btn btn-info">View </button>
-                                             </td>
+                                        
                                         </tr>
                                     )
                                 }
