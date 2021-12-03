@@ -33,6 +33,11 @@ import CreateGrantsComponent from './components/CreateGrantsComponent';
 import UpdateGrantComponent from './components/UpdateGrantComponent';
 import ViewGrantComponent from './components/ViewGrantComponent';
 
+
+import UserEvent from './components/ListUserEventComponent';
+import UserGrant from './components/ListUserGrantComponent';
+
+
 function App() {
   return (
     <>
@@ -44,6 +49,9 @@ function App() {
             <Route exact path='/grant' component={Grant} />
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/academic' component={Academic} />
+
+            <Route exact path='/userevents' component={UserEvent} />
+            <Route exact path='/userawards' component={UserGrant} />
 
             <Route exact path='/login' component={Login} />
             <Route exact path='/registration' component={Register} />

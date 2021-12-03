@@ -71,6 +71,23 @@ const TopBar = () => {
                 </div>
                 </div>
 
+                <div className='icon-container'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/userevents'>
+                   Events List
+                  </Link>
+                </div>
+                </div>
+
+
+<div className='icon-container'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/usergrants'>
+                   Awards List
+                  </Link>
+                </div>
+                </div>
+
 
 
               <div className='icon-wrapper'>
