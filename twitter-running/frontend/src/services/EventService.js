@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const Event_API_BASE_URL = "http://localhost:8080/events";
+const Event_API_BASE_URL = "https://baylor-board.herokuapp.com/events";
 
 class EventService {
 

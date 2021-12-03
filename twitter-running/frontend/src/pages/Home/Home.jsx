@@ -24,7 +24,7 @@ const Home = () => {
     dispatch(listTweets())
   }, [dispatch])
 
-const baseURL = "http://localhost:8080/events";
+const baseURL = "https://baylor-board.herokuapp.com/events";
 
 
   const [events, setPost] = React.useState(null);

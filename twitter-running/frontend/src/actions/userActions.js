@@ -5,7 +5,7 @@ export const listTweets = () => async (dispatch) => {
     dispatch({ type: 'TWEET_LIST_REQUEST' })
 
     const { data } = await axios.get(
-      `http://localhost:8080/tweets`
+      `https://baylor-board.herokuapp.com/tweets`
     )
 
     dispatch({

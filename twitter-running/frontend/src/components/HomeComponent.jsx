@@ -26,12 +26,12 @@ class HomeComponent extends Component {
 
     componentDidMount(){
         
-        axios.get(`http://localhost:8080/events`)
+        axios.get(`https://baylor-board.herokuapp.com/events`)
       .then(res => {
         this.setState({ events: res.data.events});
       })
 
-        axios.get(`http://localhost:8080/tweets`)
+        axios.get(`https://baylor-board.herokuapp.com/tweets`)
       .then(res => {
         this.setState({ tweets: res.data.tweets});
       })
