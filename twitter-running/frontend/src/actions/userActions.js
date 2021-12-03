@@ -38,7 +38,7 @@ export const login =
       }
 
       const { data } = await axios.post(
-        '/api/users/login',
+        'http://localhost:8080/users/login',
         { emailAddress, password },
         config
       )
@@ -75,7 +75,7 @@ export const register =
       }
 
       const { data } = await axios.post(
-        '/api/users/register',
+        'http://localhost:8080/users',
         { firstName, lastName, emailAddress, password },
         config
       )
