@@ -45,14 +45,47 @@ const TopBar = () => {
             </Link>
           </Container>
 
+
+
           <Container fluid>
             <Navbar.Collapse className='justify-content-end'>
+
+
+<div><a href="https://baylor-board.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/" className="navbar-brand">
+                 API</a></div>
+
+
+
+                <div className='icon-container'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='add-events/_add'>
+                    <Event /> Add Event
+                  </Link>
+                </div>
+                </div>
+
+
+<div className='icon-container'>
+ <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='add-grants/_add'>
+                    <MonetizationOn /> Add Grant
+                  </Link>
+                </div>
+                 </div>
+
+
               <div className='icon-wrapper'>
                 <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/event'>
+                  <Link className='nav-link-style' to='/events'>
                     <Event /> Event
                   </Link>
                 </div>
+
+
+            
+
+
+
 
                 <div className='icon-container p-2  text-light'>
                   <Link className='nav-link-style' to='/grant'>

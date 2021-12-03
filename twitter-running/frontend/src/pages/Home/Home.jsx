@@ -1,22 +1,48 @@
 import React from 'react'
 import { Container, Row, Col, Card, Carousel, Image } from 'react-bootstrap'
 import './Home.scss'
-// import axios from 'axios'
+ import axios from 'axios'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listTweets } from '../../actions/userActions'
+import { listEvents } from '../../actions/userActions'
 import Meta from '../../components/Meta'
 import banner1 from '../../assets/img/banner1.jpg'
 import banner2 from '../../assets/img/banner2.jpg'
+import fac from '../../assets/img/la.jpg'
+import back from '../../assets/img/baylor_background.jpg'
 
 
 const Home = () => {
+
+
   const dispatch = useDispatch()
   const tweetList = useSelector((state) => state.tweetList)
   const { loading, error, tweets } = tweetList
+
   useEffect(() => {
     dispatch(listTweets())
   }, [dispatch])
+
+const baseURL = "https://baylor-board.herokuapp.com/events";
+
+
+  const [events, setPost] = React.useState(null);
+
+  React.useEffect(() => {
+    axios.get(baseURL).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  if (!events) return null;
+
+
+
+ const events1 = axios.get("https://baylor-board.herokuapp.com/events");
+
+
+
 
   return (
     <>
@@ -25,6 +51,10 @@ const Home = () => {
         <div className='row carousel-container'>
           <div className='col-12'>
             <Carousel>
+             
+
+
+
               <Carousel.Item>
                 <Image
                   className='d-block w-100 carousel-style'
@@ -41,6 +71,9 @@ const Home = () => {
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
+
+
+
 
               <Carousel.Item>
                 <Image
@@ -59,6 +92,78 @@ const Home = () => {
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
+
+
+
+              <Carousel.Item>
+                <Image
+                  className='d-block w-100 carousel-style'
+                  src={fac}
+                  alt='Second slide'
+                  fluid
+                />
+
+              
+              </Carousel.Item>
+
+
+
+
+              <Carousel.Item>
+                <Image
+                  className='d-block w-100 carousel-style'
+                  src={back}
+                  alt='Second slide'
+                  fluid
+                />
+
+                <Carousel.Caption>
+                  <h3>Event List</h3>
+                  <p className='carousel-text'>
+                   
+<div>
+ <h2 className="text-center"> Recent Events </h2>
+<div className = "row">
+                        <table className = "table table-striped table-bordered">
+
+                            <thead>
+                                <tr>
+                                    <th> Event Title </th>
+                                    <th> Event Coordinator </th>
+                                    <th> Event Description </th>
+                                    <th> Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {
+                                    events.map(
+                                        events =>
+                                        <tr key = {events.id}>
+                                             <td> { events.title} </td>   
+                                             <td> {events.coordinator}</td>
+                                             <td> {events.description}</td>
+                                             <td>
+                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.viewEmployee(events.id)} className="btn btn-info">View </button>
+                                             </td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+
+                 </div>
+
+                </div>
+
+
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+
+
+
+
+
             </Carousel>
           </div>
         </div>
