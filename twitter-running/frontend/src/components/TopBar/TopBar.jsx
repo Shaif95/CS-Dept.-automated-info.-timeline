@@ -82,7 +82,7 @@ const TopBar = () => {
 
 <div className='icon-container'>
                 <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/usergrants'>
+                  <Link className='nav-link-style' to='/userawards'>
                    Awards List
                   </Link>
                 </div>
