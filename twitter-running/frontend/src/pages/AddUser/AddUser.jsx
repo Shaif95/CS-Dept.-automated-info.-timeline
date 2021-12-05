@@ -4,6 +4,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import './AddUser.scss'
 
 const AddUser = ({ history }) => {
   const [users, setUsers] = useState('')
