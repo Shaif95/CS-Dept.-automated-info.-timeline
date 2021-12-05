@@ -27,7 +27,7 @@ const AddUser = ({ history }) => {
         history.push('/login')
       }
     }
-  }, [users, userInfo])
+  }, [users, userInfo, history])
 
   const handleSubmit = (e) => {
     e.preventDefault()
