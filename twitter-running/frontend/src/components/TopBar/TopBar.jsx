@@ -38,57 +38,61 @@ const TopBar = () => {
     <>
       <Navbar fixed='top' className='nav-wrapper'>
         <Container fluid>
-          <Container className='nav-item-left'>
             <Link to='/'>
               <Navbar.Brand>baylorBoard</Navbar.Brand>
               <Navbar.Toggle />
             </Link>
-          </Container>
 
 
-
-          <Container fluid>
             <Navbar.Collapse className='justify-content-end'>
+              <div>
+                <a
+                  href='https://baylor-board.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/'
+                  className='navbar-brand'
+                >
+                  API
+                </a>
+              </div>
 
-
-<div><a href="https://baylor-board.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/" className="navbar-brand">
-                 API</a></div>
-
-
-<div className='icon-container'>
+              <div className='icon-container'>
                 <div className='icon-container p-2 mr-2 text-light'>
                   <Link className='nav-link-style' to='/'>
-                   Home
+                    Home
                   </Link>
                 </div>
-                </div>
+              </div>
 
-<div className='icon-container'>
+              <div className='icon-container'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/tweets'>
+                    Tweets
+                  </Link>
+                </div>
+              </div>
+
+              <div className='icon-container'>
                 <div className='icon-container p-2 mr-2 text-light'>
                   <Link className='nav-link-style' to='/home'>
-                   Slide
+                    Slide
                   </Link>
                 </div>
-                </div>
+              </div>
 
-                <div className='icon-container'>
+              <div className='icon-container'>
                 <div className='icon-container p-2 mr-2 text-light'>
                   <Link className='nav-link-style' to='/userevents'>
-                   Events List
+                    Events List
                   </Link>
                 </div>
-                </div>
+              </div>
 
-
-<div className='icon-container'>
+              <div className='icon-container'>
                 <div className='icon-container p-2 mr-2 text-light'>
                   <Link className='nav-link-style' to='/userawards'>
-                   Awards List
+                    Awards List
                   </Link>
                 </div>
-                </div>
-
-
+              </div>
 
               <div className='icon-wrapper'>
                 <div className='icon-container p-2 mr-2 text-light'>
@@ -97,25 +101,13 @@ const TopBar = () => {
                   </Link>
                 </div>
 
-
-
-
-
-          
-
                 <div className='icon-container'>
- <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/awards'>
-                    <MonetizationOn /> Awards
-                  </Link>
+                  <div className='icon-container p-2 mr-2 text-light'>
+                    <Link className='nav-link-style' to='/awards'>
+                      <MonetizationOn /> Awards
+                    </Link>
+                  </div>
                 </div>
-                 </div>
-
-
-            
-
-
-
 
                 <div className='icon-container p-2  text-light'>
                   <Link className='nav-link-style' to='/grant'>
@@ -164,7 +156,6 @@ const TopBar = () => {
               </div>
             </Navbar.Collapse>
           </Container>
-        </Container>
       </Navbar>
     </>
   )

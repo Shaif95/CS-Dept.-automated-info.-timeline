@@ -4,37 +4,6 @@
             color: white;
             padding: 1.5rem 2rem;
             width: 100%;
-            .card {
-                border-radius: .75rem;
-                padding: .5rem 1rem;
-                -webkit-box-shadow: 2px 2px 8px -1px rgba(0, 0, 0, 0.35);
-                -moz-box-shadow: 2px 2px 8px -1px rgba(0, 0, 0, 0.35);
-                box-shadow: 2px 2px 8px -1px rgba(0, 0, 0, 0.35);
-                background-color: #26293c;
-                margin-bottom: .3rem;
-                height: 11rem;
-
-                .card-text {
-                    color: rgb(146, 146, 146) !important;
-                    font-size: .9rem;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 3;
-                    /* number of lines to show */
-                    -webkit-box-orient: vertical
-                }
-
-                .card-subtitle {
-                    font-weight: normal;
-                    color: #676877 !important;
-                }
-
-                .card-title {
-                    font-size: 1.1rem;
-                    color: rgb(192, 192, 192) !important;
-                }
-            }
         }
         .carousel-style{
             max-height: 400px ;

@@ -1,47 +1,34 @@
 import React from 'react'
 import { Container, Row, Col, Card, Carousel, Image } from 'react-bootstrap'
 import './Home.scss'
- import axios from 'axios'
+import axios from 'axios'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { listTweets } from '../../actions/userActions'
-import { listEvents } from '../../actions/userActions'
 import Meta from '../../components/Meta'
 import banner1 from '../../assets/img/banner1.jpg'
 import banner2 from '../../assets/img/banner2.jpg'
 import fac from '../../assets/img/la.jpg'
 import back from '../../assets/img/baylor_background.jpg'
 
-
 const Home = () => {
-
-
   const dispatch = useDispatch()
-  const tweetList = useSelector((state) => state.tweetList)
-  const { loading, error, tweets } = tweetList
 
   useEffect(() => {
     dispatch(listTweets())
   }, [dispatch])
 
-const baseURL = "https://baylor-board.herokuapp.com/events";
+  const baseURL = 'https://baylor-board.herokuapp.com/events'
 
+  const [events, setPost] = React.useState(null)
 
-  const [events, setPost] = React.useState(null);
-
-  React.useEffect(() => {
+  useEffect(() => {
     axios.get(baseURL).then((response) => {
-      setPost(response.data.events);
-    });
-  }, []);
+      setPost(response.data.events)
+    })
+  }, [])
 
-  if (!events) return null;
-
-
-
-
-
-
+  if (!events) return null
 
   return (
     <>
@@ -50,10 +37,6 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
         <div className='row carousel-container'>
           <div className='col-12'>
             <Carousel>
-             
-
-
-
               <Carousel.Item>
                 <Image
                   className='d-block w-100 carousel-style'
@@ -70,9 +53,6 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
-
-
-
 
               <Carousel.Item>
                 <Image
@@ -92,8 +72,6 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                 </Carousel.Caption>
               </Carousel.Item>
 
-
-
               <Carousel.Item>
                 <Image
                   className='d-block w-100 carousel-style'
@@ -101,12 +79,7 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                   alt='Second slide'
                   fluid
                 />
-
-              
               </Carousel.Item>
-
-
-
 
               <Carousel.Item>
                 <Image
@@ -119,109 +92,67 @@ const baseURL = "https://baylor-board.herokuapp.com/events";
                 <Carousel.Caption>
                   <h3>Event List</h3>
                   <p className='carousel-text'>
-                   
-<div>
- <h2 className="text-center"> List of Events </h2>
-<div className = "row">
-                        <table className = "table table-striped table-bordered">
-
-                            <thead>
-                                <tr>
-                                    <th> Event Title </th>
-                                    <th> Event Coordinator </th>
-                                    <th> Event Description </th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                              {
-                                    events.map(
-                                        events =>
-                                        <tr key = {events.id}>
-                                             <td> { events.title} </td>   
-                                             <td> {events.coordinator}</td>
-                                             <td> {events.description}</td>
-                                        
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
+                    <div>
+                      <h2 className='text-center'> List of Events </h2>
+                      <div className='row'>
+                        <table className='table table-striped table-bordered'>
+                          <thead>
+                            <tr>
+                              <th> Event Title </th>
+                              <th> Event Coordinator </th>
+                              <th> Event Description </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {events.map((events) => (
+                              <tr key={events.id}>
+                                <td> {events.title} </td>
+                                <td> {events.coordinator}</td>
+                                <td> {events.description}</td>
+                              </tr>
+                            ))}
+                          </tbody>
                         </table>
-
-                 </div>
-
-                </div>
-
-
+                      </div>
+                    </div>
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
 
-
-
-            <Carousel.Item>
-
-
+              <Carousel.Item>
                 <Row className='card-container'>
-            {events.reverse().slice(0,3).map((event) => (
-              <Col  key={event.id}>
-                <Card className="h-100">
-                  <Card.Body>
-                    <Card.Title className='mb-2 text-dark'>
-                      Event Title: {event.title}
-                    </Card.Title>
-                    <Card.Text className='text-dark'>
-                      Event Coordinator: <span>{event.coordinator}</span>
-                    </Card.Text>
-                    <Card.Subtitle className='text-dark'>
-                      Event Description: {event.description}
-                    </Card.Subtitle>
-               
-            <img  src={event.images}   style= {{ height: "50% "}} alt= {"Image Missing"} ></img>
-                 
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+                  {events
+                    .reverse()
+                    .slice(0, 3)
+                    .map((event) => (
+                      <Col key={event.id}>
+                        <Card className='h-100'>
+                          <Card.Body>
+                            <Card.Title className='mb-2 text-dark'>
+                              Event Title: {event.title}
+                            </Card.Title>
+                            <Card.Text className='text-dark'>
+                              Event Coordinator:{' '}
+                              <span>{event.coordinator}</span>
+                            </Card.Text>
+                            <Card.Subtitle className='text-dark'>
+                              Event Description: {event.description}
+                            </Card.Subtitle>
 
-          </Row>
-
-              
+                            <img
+                              src={event.images}
+                              style={{ height: '50% ' }}
+                              alt={'Image Missing'}
+                            ></img>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    ))}
+                </Row>
               </Carousel.Item>
-
-        
-
-
-
             </Carousel>
           </div>
         </div>
-
-        {loading ? (
-          <></>
-        ) : error ? (
-          <></>
-        ) : (
-          <Row className='card-container'>
-            {tweets.map((tweet) => (
-              <Col lg={4} md={6} key={tweet.id}>
-                <Card>
-                  <Card.Body>
-                    <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweet.user}
-                    </Card.Title>
-                    <Card.Text className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
-                    </Card.Text>
-                    <Card.Subtitle className='text-dark'>
-                      Status: {tweet.status}
-                    </Card.Subtitle>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        )}
       </Container>
     </>
   )
