@@ -48,23 +48,50 @@ class HomeComponent extends Component {
 
 change(str)
 {
-  axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str + '/' + 'status?status=ACCEPTED' );
+    if(str.message=="a")
+    {
+  axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str.name + '/' + 'status?status=ACCEPTED' );
 
    console.log("changed on Database")
 
-   document.getElementById(str).innerHTML="ACCEPTED";
-   document.getElementById(str).style.backgroundColor = "#008000";
+   document.getElementById(str.name).innerHTML="ACCEPTED";
+   document.getElementById(str.name).style.backgroundColor = "#008000";
+}
+
+if(str.message=="c")
+    {
+  axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str.name + '/' + 'status?status=PENDING' );
+
+   console.log("changed on Database")
+
+   document.getElementById(str.name).innerHTML="PENDING";
+   document.getElementById(str.name).style.backgroundColor = "#008000";
+}
 
 }
 
 
 send(str)
 {
-  console.log(str);
+  //console.log(str);
    this.clientRef.sendMessage("/app/user-all",  JSON.stringify({
 
     'name': str,
-    'message': str
+    'message': "a"
+
+    }));
+
+ 
+
+}
+
+send2(str)
+{
+  //console.log(str);
+   this.clientRef.sendMessage("/app/user-all",  JSON.stringify({
+
+    'name': str,
+    'message': "c"
 
     }));
 
@@ -99,7 +126,8 @@ send(str)
                                  <th> Tweet User</th>
                                     <th> Tweet Text</th>
                                     <th> Tweet Status</th>
-                                    <th> Actions</th>
+                                    <th> ACCEPT </th>
+                                    <th> PENDING </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -113,6 +141,11 @@ send(str)
                                              <td>
  <button style={{marginLeft: "10px"}} onClick={ () => this.send(tweets.id)} className="btn btn-info">ACCEPT</button>
                                              </td>
+
+                                             <td>
+ <button style={{marginLeft: "10px"}} onClick={ () => this.send2(tweets.id)} className="btn btn-info">PENDING</button>
+                                             </td>
+
                                         </tr>
                                     )
                                 }
@@ -135,7 +168,7 @@ send(str)
             <div>
                 {this.state.myExternalLib !== null
                     ? "We can display any UI/whatever depending on myExternalLib without worrying about null references and race conditions."
-                    : "myExternalLib is loading..."}
+                    : ""}
             </div>
 
 <div>
@@ -147,7 +180,7 @@ send(str)
   onMessage={(msg) => {   
 
     console.log(msg.name);
-    this.change(msg.name);
+    this.change(msg);
     
 
    } }
