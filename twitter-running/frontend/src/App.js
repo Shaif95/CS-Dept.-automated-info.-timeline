@@ -5,38 +5,28 @@ import Home from './pages/Home/Home'
 import Tweets from './pages/Tweets/Tweets'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
-import Event from './pages/Event/Event'
 import Grant from './pages/Grant/Grant'
 import Forbidden from './pages/Forbidden/Forbidden'
 import Academic from './pages/Academic/Academic'
 import NotFound from './pages/NotFound/NotFound'
 import Profile from './pages/Profile/Profile'
+import AddUser from './pages/AddUser/AddUser'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import {
-      BrowserRouter as Router,
-      Routes,
-      Switch,
-      Route,
-      Link
-    } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom'
 
+import ListEventComponent from './components/ListEventComponent'
+import HomeComponent from './components/HomeComponent'
+import CreateEventComponent from './components/CreateEventComponent'
+import UpdateEventComponent from './components/UpdateEventComponent'
+import ViewEventComponent from './components/ViewEventComponent'
+import ListGrantsComponent from './components/ListGrantComponent'
+import CreateGrantsComponent from './components/CreateGrantsComponent'
+import UpdateGrantComponent from './components/UpdateGrantComponent'
+import ViewGrantComponent from './components/ViewGrantComponent'
 
-
-import ListEventComponent from './components/ListEventComponent';
-import HomeComponent from './components/HomeComponent';
-import CreateEventComponent from './components/CreateEventComponent';
-import UpdateEventComponent from './components/UpdateEventComponent';
-import ViewEventComponent from './components/ViewEventComponent';
-import ListGrantsComponent from './components/ListGrantComponent';
-import CreateGrantsComponent from './components/CreateGrantsComponent';
-import UpdateGrantComponent from './components/UpdateGrantComponent';
-import ViewGrantComponent from './components/ViewGrantComponent';
-
-
-import UserEvent from './components/ListUserEventComponent';
-import UserGrant from './components/ListUserGrantComponent';
-
+import UserEvent from './components/ListUserEventComponent'
+import UserGrant from './components/ListUserGrantComponent'
 
 function App() {
   return (
@@ -50,6 +40,8 @@ function App() {
             <Route exact path='/grant' component={Grant} />
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/academic' component={Academic} />
+
+            <Route exact path='/whitelist-users' component={AddUser} />
 
             <Route exact path='/userevents' component={UserEvent} />
             <Route exact path='/userawards' component={UserGrant} />

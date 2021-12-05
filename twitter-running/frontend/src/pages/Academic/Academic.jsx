@@ -6,15 +6,26 @@ const Academic = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  const redirect = '/forbidden'
+  // const redirect = '/forbidden'
+
+  // useEffect(() => {
+  //   if (!userInfo) {
+  //     history.push('/login')
+  //   } else if (!userInfo.isAdmin) {
+  //     history.push(redirect)
+  //   }
+  // }, [history, userInfo, redirect])
+
+  const redirect = '/login'
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
-    } else if (!userInfo.isAdmin) {
       history.push(redirect)
+    } else {
+      console.log(userInfo)
     }
   }, [history, userInfo, redirect])
+
   return (
     <>
       <Meta title='Academic' />

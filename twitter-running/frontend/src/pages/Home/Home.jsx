@@ -142,7 +142,7 @@ const Home = () => {
                             <img
                               src={event.images}
                               style={{ height: '50% ' }}
-                              alt={'Image Missing'}
+                              alt=''
                             ></img>
                           </Card.Body>
                         </Card>

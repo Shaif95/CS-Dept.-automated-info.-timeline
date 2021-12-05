@@ -1,15 +1,22 @@
 import React from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listTweets } from '../../actions/userActions'
 import Meta from '../../components/Meta'
 import './Tweets.scss'
+import AddIcon from '@mui/icons-material/Add'
+import { Link } from 'react-router-dom'
 
 const Tweets = () => {
   const dispatch = useDispatch()
   const tweetList = useSelector((state) => state.tweetList)
   const { loading, error, tweets } = tweetList
+
+  const redirect = '/login'
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   useEffect(() => {
     dispatch(listTweets())
@@ -19,6 +26,18 @@ const Tweets = () => {
     <>
       <Meta title='Tweets' />
       <Container fluid className='home-container'>
+        {userInfo && userInfo.role === 'ADMIN' ? (
+          <Row className='justify-content-end m-2'>
+            <Link to='/whitelist-users'>
+              <Button variant='success'>
+                <AddIcon />
+                Add Whitelist User
+              </Button>
+            </Link>
+          </Row>
+        ) : (
+          ''
+        )}
         {loading ? (
           <></>
         ) : error ? (
