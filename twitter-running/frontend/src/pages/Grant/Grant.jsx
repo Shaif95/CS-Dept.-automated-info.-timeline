@@ -11,6 +11,8 @@ const Grant = ({ history }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push(redirect)
+    } else{
+      console.log(userInfo)
     }
   }, [history, userInfo, redirect])
   return (

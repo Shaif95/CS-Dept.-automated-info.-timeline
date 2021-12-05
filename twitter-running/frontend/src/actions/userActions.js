@@ -24,18 +24,14 @@ export const listTweets = () => async (dispatch) => {
 }
 
 export const listEvents = () => async (dispatch) => {
-  
-    dispatch({ type: 'EVENT_LIST_REQUEST' })
+  dispatch({ type: 'EVENT_LIST_REQUEST' })
 
-    const { data } = await axios.get(
-      `http://localhost:8080/events`
-    )
+  const { data } = await axios.get(`http://localhost:8080/events`)
 
-    dispatch({
-      type: 'EVENT_LIST_SUCCESS',
-      payload: data.events,
-    })
-  
+  dispatch({
+    type: 'EVENT_LIST_SUCCESS',
+    payload: data.events,
+  })
 }
 
 export const login =
@@ -53,7 +49,8 @@ export const login =
       }
 
       const { data } = await axios.post(
-        'http://localhost:8080/users/login',
+        // http://localhost:8080/users/login
+        'https://baylor-board.herokuapp.com/users/login',
         { emailAddress, password },
         config
       )
@@ -90,7 +87,7 @@ export const register =
       }
 
       const { data } = await axios.post(
-        'http://localhost:8080/users',
+        'https://baylor-board.herokuapp.com/users/',
         { firstName, lastName, emailAddress, password },
         config
       )

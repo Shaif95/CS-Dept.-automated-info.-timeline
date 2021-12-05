@@ -18,7 +18,8 @@ const TopBar = () => {
   const AvatarComp = ({ role }) => {
     return (
       <>
-        <Person /> {role}
+        <Person />
+        {role}
       </>
     )
   }
@@ -38,117 +39,133 @@ const TopBar = () => {
     <>
       <Navbar fixed='top' className='nav-wrapper'>
         <Container fluid>
-          <Container className='nav-item-left'>
-            <Link to='/'>
-              <Navbar.Brand>baylorBoard</Navbar.Brand>
-              <Navbar.Toggle />
-            </Link>
-          </Container>
+          <Link to='/'>
+            <Navbar.Brand>baylorBoard</Navbar.Brand>
+            <Navbar.Toggle />
+          </Link>
 
+          <Navbar.Collapse className='justify-content-end'>
+            <div>
+              <a
+                href='https://baylor-board.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/'
+                className='navbar-brand'
+              >
+                API
+              </a>
+            </div>
 
-
-          <Container fluid>
-            <Navbar.Collapse className='justify-content-end'>
-
-
-<div><a href="https://baylor-board.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/" className="navbar-brand">
-                 API</a></div>
-
-
-<div className='icon-container'>
-                <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/'>
-                   Home
-                  </Link>
-                </div>
-                </div>
-
-<div className='icon-container'>
-                <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/home'>
-                   Slide
-                  </Link>
-                </div>
-                </div>
-
-                <div className='icon-container'>
-                <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/userevents'>
-                   Events List
-                  </Link>
-                </div>
-                </div>
-
-
-<div className='icon-container'>
-                <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/userawards'>
-                   Awards List
-                  </Link>
-                </div>
-                </div>
-
-
-
-              <div className='icon-wrapper'>
-                
-
-
-
-
-
-            
-
-
-
-
-                <div className='icon-container p-2  text-light'>
-                  <Link className='nav-link-style' to='/adminpage'>
-                    <MonetizationOn /> Admin Page
-                  </Link>
-                </div>
-                {userInfo && userInfo.isAdmin === true ? (
-                  <div className='icon-container p-2  text-light'>
-                    <Link className='nav-link-style' to='/academic'>
-                      <LocalLibraryIcon /> Academic
-                    </Link>
-                  </div>
-                ) : (
-                  <></>
-                )}
-                {userInfo ? (
-                  <>
-                    <NavDropdown
-                      title={
-                        <AvatarComp
-                          role={userInfo.isAdmin ? 'Admin' : 'Professor'}
-                        />
-                      }
-                      id='nav-dropdown'
-                      show={show}
-                      onMouseEnter={showDropdown}
-                      onMouseLeave={hideDropdown}
-                    >
-                      <NavDropdown.Item eventKey='4.2'>
-                        <Link className='link-nostyle' to='/profile'>
-                          Profile
-                        </Link>
-                      </NavDropdown.Item>
-                      <NavDropdown.Item eventKey='4.3' onClick={logoutHandler}>
-                        Logout
-                      </NavDropdown.Item>
-                    </NavDropdown>
-                  </>
-                ) : (
-                  <div className='icon-container p-2 text-light'>
-                    <Link className='nav-link-style' to='/login'>
-                      <LoginIcon /> Sign In
-                    </Link>
-                  </div>
-                )}
+            <div className='icon-container'>
+              <div className='icon-container p-2 mr-2 text-light'>
+                <Link className='nav-link-style' to='/'>
+                  Home
+                </Link>
               </div>
-            </Navbar.Collapse>
-          </Container>
+            </div>
+
+            <div className='icon-container'>
+              <div className='icon-container p-2 mr-2 text-light'>
+                <Link className='nav-link-style' to='/tweets'>
+                  Tweets
+                </Link>
+              </div>
+            </div>
+
+            <div className='icon-container p-2 mr-2 text-light'>
+              <Link className='nav-link-style' to='/events'>
+                {/* <Event />  */}
+                Events
+              </Link>
+            </div>
+
+            <div className='icon-container'>
+              <div className='icon-container p-2 mr-2 text-light'>
+                <Link className='nav-link-style' to='/home'>
+                  Slide
+                </Link>
+              </div>
+            </div>
+
+            <div className='icon-container'>
+              <div className='icon-container p-2 mr-2 text-light'>
+                <Link className='nav-link-style' to='/userevents'>
+                  Events List
+                </Link>
+              </div>
+            </div>
+
+            <div className='icon-container'>
+              <div className='icon-container p-2 mr-2 text-light'>
+                <Link className='nav-link-style' to='/userawards'>
+                  Awards List
+                </Link>
+              </div>
+            </div>
+
+            <div className='icon-wrapper'>
+              <div className='icon-container'>
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/awards'>
+                    {/* <MonetizationOn />  */}
+                    Awards
+                  </Link>
+                </div>
+              </div>
+
+              <div className='icon-container p-2  text-light'>
+                <Link className='nav-link-style' to='/grant'>
+                  {/* <MonetizationOn />  */}
+                  Grant
+                </Link>
+              </div>
+
+              <div className='icon-container p-2  text-light'>
+                <Link className='nav-link-style' to='/adminpage'>
+                  <MonetizationOn /> Admin Page
+                </Link>
+              </div>
+
+              {userInfo ? (
+                <div className='icon-container p-2  text-light'>
+                  <Link className='nav-link-style' to='/academic'>
+                    {/* <LocalLibraryIcon />  */}
+                    Academic
+                  </Link>
+                </div>
+              ) : (
+                <></>
+              )}
+              {userInfo ? (
+                <>
+                  <NavDropdown
+                    title={
+                      <AvatarComp
+                        role={userInfo.role ? 'ADMIN' : 'PROFESSOR'}
+                      />
+                    }
+                    id='nav-dropdown'
+                    show={show}
+                    onMouseEnter={showDropdown}
+                    onMouseLeave={hideDropdown}
+                  >
+                    <NavDropdown.Item eventKey='4.2'>
+                      <Link className='link-nostyle' to='/profile'>
+                        Profile
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item eventKey='4.3' onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              ) : (
+                <div className='icon-container p-2 text-light'>
+                  <Link className='nav-link-style' to='/login'>
+                    <LoginIcon /> Sign In
+                  </Link>
+                </div>
+              )}
+            </div>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
