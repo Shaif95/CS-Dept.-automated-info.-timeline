@@ -14,6 +14,7 @@ class HomeComponent extends Component {
     this.state = {
       events: [],
       tweets: [],
+      newtweets : [],
     }
   }
 
@@ -24,6 +25,18 @@ class HomeComponent extends Component {
 
     axios.get(`https://baylor-board.herokuapp.com/tweets`).then((res) => {
       this.setState({ tweets: res.data.tweets })
+
+      for (let i = 0; i < this.state.tweets.length; i++) {
+ 
+  if(this.state.tweets[i].status == "ACCEPTED")
+  {
+    console.log("happend")
+    this.state.newtweets.push(this.state.tweets[i])
+  }
+
+}
+
+  
     })
   }
 
@@ -44,18 +57,18 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.tweets.map((tweet) => (
-              <Col lg={4} md={6} key={tweet.id}>
+            {this.state.newtweets.map((tweets) => (
+              <Col lg={4} md={6} key={tweets.id}>
                 <Card>
                   <Card.Body>
                     <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweet.user}
+                      UserName : {tweets.user}
                     </Card.Title>
                     <Card.Text className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
+                      Tweet: <span>{tweets.text}</span>
                     </Card.Text>
                     <Card.Subtitle className='text-dark'>
-                      Status: {tweet.status}
+                      Status: {tweets.status}
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>

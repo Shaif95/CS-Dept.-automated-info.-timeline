@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Carousel, Image } from 'react-bootstrap'
 import './Home.scss'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { listTweets } from '../../actions/userActions'
 import Meta from '../../components/Meta'
 import banner1 from '../../assets/img/banner1.jpg'
@@ -13,10 +13,23 @@ import back from '../../assets/img/baylor_background.jpg'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const tweetList = useSelector((state) => state.tweetList)
+  const { loading, error, tweets } = tweetList
+  const newtweets = []
 
   useEffect(() => {
     dispatch(listTweets())
   }, [dispatch])
+
+  for (let i = 0; i < tweets.length; i++) {
+ 
+  if(tweets[i].status == "ACCEPTED")
+  {
+    console.log("happend")
+    newtweets.push(tweets[i])
+  }
+
+}
 
   const baseURL = 'https://baylor-board.herokuapp.com/events'
 
@@ -150,9 +163,42 @@ const Home = () => {
                     ))}
                 </Row>
               </Carousel.Item>
+
+
+
+
             </Carousel>
           </div>
         </div>
+
+
+{loading ? (
+          <></>
+        ) : error ? (
+          <></>
+        ) : (
+          <Row className='card-container'>
+            {newtweets.map((tweet) => (
+              <Col lg={4} md={6} key={tweet.id}>
+                <Card>
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      UserName : {tweet.user}
+                    </Card.Title>
+                    <Card.Text className='text-dark'>
+                      Tweet: <span>{tweet.text}</span>
+                    </Card.Text>
+                    <Card.Subtitle className='text-dark'>
+                      Status: {tweet.status}
+                    </Card.Subtitle>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        )}
+
+
       </Container>
     </>
   )
