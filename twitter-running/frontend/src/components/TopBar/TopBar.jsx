@@ -120,7 +120,8 @@ const TopBar = () => {
 
               <div className='icon-container p-2  text-light'>
                 <Link className='nav-link-style' to='/adminpage'>
-                  <MonetizationOn /> Admin Page
+                  {/* <MonetizationOn />  */}
+                  Admin Page
                 </Link>
               </div>
 
