@@ -36,6 +36,8 @@ import ViewGrantComponent from './components/ViewGrantComponent';
 
 import UserEvent from './components/ListUserEventComponent';
 import UserGrant from './components/ListUserGrantComponent';
+import AdminTweet from './components/AdminTweet';
+import AdminPage from './components/AdminPage';
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/grant' component={Grant} />
+            <Route exact path='/admintweet' component={AdminTweet} />
+            <Route exact path='/adminpage' component={AdminPage} />
             <Route exact path='/profile' component={Profile} />
             <Route exact path='/academic' component={Academic} />
 

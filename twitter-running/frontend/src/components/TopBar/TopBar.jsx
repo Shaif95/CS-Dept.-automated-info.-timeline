@@ -91,25 +91,10 @@ const TopBar = () => {
 
 
               <div className='icon-wrapper'>
-                <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/events'>
-                    <Event /> Events
-                  </Link>
-                </div>
+                
 
 
 
-
-
-          
-
-                <div className='icon-container'>
- <div className='icon-container p-2 mr-2 text-light'>
-                  <Link className='nav-link-style' to='/awards'>
-                    <MonetizationOn /> Awards
-                  </Link>
-                </div>
-                 </div>
 
 
             
@@ -118,8 +103,8 @@ const TopBar = () => {
 
 
                 <div className='icon-container p-2  text-light'>
-                  <Link className='nav-link-style' to='/grant'>
-                    <MonetizationOn /> Grant
+                  <Link className='nav-link-style' to='/adminpage'>
+                    <MonetizationOn /> Admin Page
                   </Link>
                 </div>
                 {userInfo && userInfo.isAdmin === true ? (

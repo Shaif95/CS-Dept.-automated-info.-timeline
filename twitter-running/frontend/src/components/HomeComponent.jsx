@@ -26,7 +26,7 @@ class HomeComponent extends Component {
 
     componentDidMount(){
         
-        axios.get(`https://baylor-board.herokuapp.com/events`)
+        axios.get(`https://baylor-board.herokuapp.com/events/slide`)
       .then(res => {
         this.setState({ events: res.data.events});
       })
