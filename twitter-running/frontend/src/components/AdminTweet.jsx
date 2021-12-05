@@ -26,7 +26,7 @@ class HomeComponent extends Component {
 
         this.state = {
           myExternalLib: null,
-                tweets: []
+                tweets: [],
         }
     
     }
@@ -41,37 +41,34 @@ class HomeComponent extends Component {
 
 
    
- var socket = new SockJS('https://baylor-board.herokuapp.com/gs-guide-websocket');
-        this.stompClient = Stomp.over(socket);
-    this.stompClient.connect({}, function (frame) {
-            //setConnected();
-            console.log('Connected: ' + frame);
-            //this.stompClient.subscribe('/topic/greetings', function (greeting) {
-              //  this.showGreeting(JSON.parse(greeting.body).content);
-            //});
-        });
-
-
-
-
-
-    }
-
-
-showGreeting(message) {
-    }
  
-send(str)
-{
-  console.log(str);
-   this.stompClient.send("/app/hello", {}, JSON.stringify({'name': str }));
 
-   axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str + '/' + 'status?status=ACCEPTED' );
+
+    }
+
+change(str)
+{
+  axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str + '/' + 'status?status=ACCEPTED' );
 
    console.log("changed on Database")
 
    document.getElementById(str).innerHTML="ACCEPTED";
    document.getElementById(str).style.backgroundColor = "#008000";
+
+}
+
+
+send(str)
+{
+  console.log(str);
+   this.clientRef.sendMessage("/app/user-all",  JSON.stringify({
+
+    'name': str,
+    'message': str
+
+    }));
+
+ 
 
 }
     
@@ -142,9 +139,22 @@ send(str)
             </div>
 
 <div>
-        <SockJsClient url='http://localhost:8080/gs-guide-websocket' topics={['/topics/all']}
-            onMessage={(msg) => { console.log(msg); }}
-            ref={ (client) => { this.clientRef = client }} />
+        <SockJsClient 
+  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
+  topics={['/topic/user']} 
+  onConnect={console.log("Connection established!")} 
+  //onDisconnect={console.log("Disconnected!")}
+  onMessage={(msg) => {   
+
+    console.log(msg.name);
+    this.change(msg.name);
+    
+
+   } }
+  ref={(client) => {
+                                  this.clientRef = client
+                              }}  
+/> 
       </div>
 
 
