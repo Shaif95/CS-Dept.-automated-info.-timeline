@@ -13,11 +13,11 @@ class CreateGrantsComponent extends Component {
             // step 2
             id: this.props.match.params.id,
             title: '',
-            description: '',
+            description: ''
         }
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
-        this.saveOrUpdateGrant = this.saveOrUpdateGrant.bind(this);
+        this.saveOrUpdateEvent = this.saveOrUpdateEvent.bind(this);
     }
 
     // step 3
@@ -30,15 +30,15 @@ class CreateGrantsComponent extends Component {
             GrantService.getGrantById(this.state.id).then( (res) =>{
                 let em = res.data;
                 this.setState({title: em.title,
-                    description : em.description,
+                    description : em.description
                 });
             });
         }        
     }
-    saveOrUpdateGrant = (e) => {
-        e.prGrantDefault();
-    let em = {title: this.state.title,  description: this.state.description};
-        console.log('Grant => ' + JSON.stringify(em));
+    saveOrUpdateEvent = (e) => {
+        e.preventDefault();
+    let em = {title: this.state.title, description: this.state.description};
+        console.log('award => ' + JSON.stringify(em));
 
         // step 5
         if(this.state.id === '_add'){
@@ -52,24 +52,24 @@ class CreateGrantsComponent extends Component {
         }
     }
     
-    changeFirstNameHandler= (Grant) => {
-        this.setState({title: Grant.target.value});
+    changeFirstNameHandler= (event) => {
+        this.setState({title: event.target.value});
     }
 
-    changeLastNameHandler= (Grant) => {
-        this.setState({coordinator: Grant.target.value});
+    changeLastNameHandler= (event) => {
+        this.setState({coordinator: event.target.value});
     }
 
-    changeImageHandler= (Grant) => {
+    changeImageHandler= (event) => {
 
         const img =[];
-        img.push(Grant.target.value)
+        img.push(event.target.value)
 
-    
+        this.setState({images: img});
     }
 
-    changeEmailHandler= (Grant) => {
-        this.setState({description: Grant.target.value});
+    changeEmailHandler= (event) => {
+        this.setState({description: event.target.value});
     }
 
     cancel(){
@@ -97,14 +97,14 @@ class CreateGrantsComponent extends Component {
                                             <input placeholder="Title" name="title" className="form-control" 
                                                 value={this.state.title} onChange={this.changeFirstNameHandler}/>
                                         </div>
-                                        
+                                       
                                         <div className = "form-group">
                                             <label style={{color: 'black'}} > Award Description: </label>
                                            <CKEditor name="description" 
                     editor={ ClassicEditor }
                 placeholder="Description" 
                 value={this.state.description}
-                onChange={ ( Grant, editor ) => {
+                onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         this.setState({description: data});
                     } }
@@ -118,7 +118,7 @@ class CreateGrantsComponent extends Component {
                                 
 
 
-                                        <button className="btn btn-success" onClick={this.saveOrUpdateGrant}>Save</button>
+                                        <button className="btn btn-success" onClick={this.saveOrUpdateEvent}>Save</button>
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                     </form>
                             
