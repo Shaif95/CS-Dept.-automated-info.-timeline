@@ -55,7 +55,7 @@ const Tweets = () => {
                       Tweet: <span>{tweet.text}</span>
                     </Card.Text>
                     <Card.Subtitle className='text-dark'>
-                      Status: {tweet.status}
+                      Status: {tweet.status}                      
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>

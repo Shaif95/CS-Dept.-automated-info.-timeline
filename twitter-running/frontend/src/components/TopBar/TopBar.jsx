@@ -35,6 +35,7 @@ const TopBar = () => {
   const logoutHandler = () => {
     dispatch(logout())
   }
+  if(userLogin)
   return (
     <>
       <Navbar fixed='top' className='nav-wrapper'>
@@ -70,12 +71,22 @@ const TopBar = () => {
               </div>
             </div>
 
-            <div className='icon-container p-2 mr-2 text-light'>
+           {/* <div className='icon-container p-2 mr-2 text-light'>
               <Link className='nav-link-style' to='/events'>
-                {/* <Event />  */}
                 Events
               </Link>
-            </div>
+            </div> */}
+
+            {userInfo && userInfo.role === 'ADMIN' ? (
+                <div className='icon-container p-2 mr-2 text-light'>
+                  <Link className='nav-link-style' to='/events'>
+                    {/* <Event />  */}
+                    Events
+                  </Link>
+                </div>
+                ) : (
+              ''
+            )}
 
             <div className='icon-container'>
               <div className='icon-container p-2 mr-2 text-light'>
@@ -102,69 +113,76 @@ const TopBar = () => {
             </div>
 
             <div className='icon-wrapper'>
-              <div className='icon-container'>
+            {userInfo && userInfo.role === 'PROFESSOR' ? (
                 <div className='icon-container p-2 mr-2 text-light'>
                   <Link className='nav-link-style' to='/awards'>
-                    {/* <MonetizationOn />  */}
+                    {/* <Event />  */}
                     Awards
                   </Link>
                 </div>
-              </div>
+                ) : (
+              ''
+            )}
 
-              <div className='icon-container p-2  text-light'>
-                <Link className='nav-link-style' to='/grant'>
-                  {/* <MonetizationOn />  */}
-                  Grant
-                </Link>
-              </div>
 
-              <div className='icon-container p-2  text-light'>
+            {/* <div className='icon-container p-2  text-light'>
+              <Link className='nav-link-style' to='/grant'>
+                {/* <MonetizationOn />
+                Grant
+              </Link>
+            </div> */}
+
+            {userInfo && userInfo.role === 'ADMIN' ? (
+                <div className='icon-container p-2  text-light'>
                 <Link className='nav-link-style' to='/adminpage'>
                   {/* <MonetizationOn />  */}
                   Admin Page
                 </Link>
               </div>
+              ) : (
+              ''
+            )}
 
-              {userInfo ? (
-                <div className='icon-container p-2  text-light'>
-                  <Link className='nav-link-style' to='/academic'>
-                    {/* <LocalLibraryIcon />  */}
-                    Academic
-                  </Link>
-                </div>
-              ) : (
-                <></>
-              )}
-              {userInfo ? (
-                <>
-                  <NavDropdown
-                    title={
-                      <AvatarComp
-                        role={userInfo.role ? 'ADMIN' : 'PROFESSOR'}
-                      />
-                    }
-                    id='nav-dropdown'
-                    show={show}
-                    onMouseEnter={showDropdown}
-                    onMouseLeave={hideDropdown}
-                  >
-                    <NavDropdown.Item eventKey='4.2'>
-                      <Link className='link-nostyle' to='/profile'>
-                        Profile
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item eventKey='4.3' onClick={logoutHandler}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-              ) : (
-                <div className='icon-container p-2 text-light'>
-                  <Link className='nav-link-style' to='/login'>
-                    <LoginIcon /> Sign In
-                  </Link>
-                </div>
-              )}
+            {userInfo ? (
+              <div className='icon-container p-2  text-light'>
+                <Link className='nav-link-style' to='/academic'>
+                  {/* <LocalLibraryIcon />  */}
+                  Academic
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )}
+            {userInfo ? (
+              <>
+                <NavDropdown
+                  title={
+                    <AvatarComp
+                      role={userInfo.role === 'PROFESSOR' ? 'PROFESSOR' : 'ADMIN'}
+                    />
+                  }
+                  id='nav-dropdown'
+                  show={show}
+                  onMouseEnter={showDropdown}
+                  onMouseLeave={hideDropdown}
+                >
+                  <NavDropdown.Item eventKey='4.2'>
+                    <Link className='link-nostyle' to='/profile'>
+                      Profile
+                    </Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item eventKey='4.3' onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </>
+            ) : (
+              <div className='icon-container p-2 text-light'>
+                <Link className='nav-link-style' to='/login'>
+                  <LoginIcon /> Sign In
+                </Link>
+              </div>
+            )}
             </div>
           </Navbar.Collapse>
         </Container>
