@@ -134,7 +134,7 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.events.reverse().slice(0, 3).map((event) => (
+            {this.state.events.slice(0, 3).map((event) => (
               <Col key={event.id}>
                 <Card className='h-100'>
                   <Card.Body>
