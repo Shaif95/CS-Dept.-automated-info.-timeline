@@ -112,6 +112,7 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
+          <Col>
             {this.state.awards.map((award) => (
               <Col key={award.id}>
                 <Card className='h-100'>
@@ -126,8 +127,10 @@ class HomeComponent extends Component {
 
                   </Card.Body>
                 </Card>
-              </Col>
+                </Col>
+              
             ))}
+            </Col>
           </Row>
         </div>
 
