@@ -15,14 +15,22 @@ class HomeComponent extends Component {
     this.state = {
       events: [],
       tweets: [],
+      awards:[],
       newtweets : [],
     }
   }
 
   componentDidMount() {
+
     axios.get( config.geturl()  +`events/slide`).then((res) => {
       this.setState({ events: res.data.events })
     })
+
+  axios.get( config.geturl()  +"awards").then((res) => {
+      this.setState({ awards: res.data.awards })
+    })
+
+
 
     axios.get( config.geturl()  +`tweets`).then((res) => {
       this.setState({ tweets: res.data.tweets })
@@ -31,7 +39,7 @@ class HomeComponent extends Component {
  
   if(this.state.tweets[i].status == "ACCEPTED")
   {
-    console.log("happend")
+    //console.log("happend")
     this.state.newtweets.push(this.state.tweets[i])
   }
 
@@ -104,7 +112,29 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.events.slice(0, 3).map((event) => (
+            {this.state.awards.slice(0, 3).map((award) => (
+              <Col key={award.id}>
+                <Card className='h-100'>
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      Awards Title: {award.title}
+                    </Card.Title>
+                   
+                    <Card.Subtitle className='text-dark'>
+                      Awards Description: {award.description}
+                    </Card.Subtitle>
+
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+
+
+        <div>
+          <Row className='card-container'>
+            {this.state.events.reverse().slice(0, 3).map((event) => (
               <Col key={event.id}>
                 <Card className='h-100'>
                   <Card.Body>
@@ -125,6 +155,8 @@ class HomeComponent extends Component {
             ))}
           </Row>
         </div>
+
+
       </Carousel>
     )
   }
