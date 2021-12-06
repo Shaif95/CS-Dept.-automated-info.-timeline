@@ -112,7 +112,7 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.awards.slice(0, 3).map((award) => (
+            {this.state.awards.map((award) => (
               <Col key={award.id}>
                 <Card className='h-100'>
                   <Card.Body>
