@@ -112,7 +112,7 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.awards.slice(0, 3).map((award) => (
+            {this.state.awards.map((award) => (
               <Col key={award.id}>
                 <Card className='h-100'>
                   <Card.Body>
@@ -134,7 +134,7 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.events.reverse().slice(0, 3).map((event) => (
+            {this.state.events.slice(0, 3).map((event) => (
               <Col key={event.id}>
                 <Card className='h-100'>
                   <Card.Body>
