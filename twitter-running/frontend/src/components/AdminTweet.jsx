@@ -8,6 +8,7 @@ import Image from './la.jpg'
 import Image1 from './chicago.jpg'
 import Helmet from "react-helmet";
 import SockJsClient from 'react-stomp';
+import config from '../services/config';
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
 
@@ -34,7 +35,7 @@ class HomeComponent extends Component {
     componentDidMount(){
         
       
-        axios.get(`https://baylor-board.herokuapp.com/tweets`)
+        axios.get(config.geturl() + "tweets")
       .then(res => {
         this.setState({ tweets: res.data.tweets});
       })
@@ -50,7 +51,7 @@ change(str)
 {
     if(str.message=="a")
     {
-  axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str.name + '/' + 'status?status=ACCEPTED' );
+  axios.put( config.geturl() + 'tweets/' + str.name + '/' + 'status?status=ACCEPTED' );
 
    console.log("changed on Database")
 
@@ -60,7 +61,7 @@ change(str)
 
 if(str.message=="c")
     {
-  axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str.name + '/' + 'status?status=PENDING' );
+  axios.put( config.geturl() + 'tweets/' + str.name + '/' + 'status?status=PENDING' );
 
    console.log("changed on Database")
 

@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
 import Image from './la.jpg'
 import Image1 from './chicago.jpg'
+import config from '../services/config';
 
 class HomeComponent extends Component {
   constructor(props) {
@@ -19,11 +20,11 @@ class HomeComponent extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://baylor-board.herokuapp.com/events/slide`).then((res) => {
+    axios.get( config.geturl()  +`events/slide`).then((res) => {
       this.setState({ events: res.data.events })
     })
 
-    axios.get(`https://baylor-board.herokuapp.com/tweets`).then((res) => {
+    axios.get( config.geturl()  +`tweets`).then((res) => {
       this.setState({ tweets: res.data.tweets })
 
       for (let i = 0; i < this.state.tweets.length; i++) {

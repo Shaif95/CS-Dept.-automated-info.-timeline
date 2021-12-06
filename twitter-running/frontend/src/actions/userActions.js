@@ -1,11 +1,12 @@
-import axios from 'axios'
+import axios from 'axios';
+import config from '../services/config';
 
 export const listTweets = () => async (dispatch) => {
   try {
     dispatch({ type: 'TWEET_LIST_REQUEST' })
 
     const { data } = await axios.get(
-      `https://baylor-board.herokuapp.com/tweets`
+       config.geturl() + "tweets"
     )
 
     dispatch({
@@ -23,16 +24,7 @@ export const listTweets = () => async (dispatch) => {
   }
 }
 
-export const listEvents = () => async (dispatch) => {
-  dispatch({ type: 'EVENT_LIST_REQUEST' })
 
-  const { data } = await axios.get(`http://localhost:8080/events`)
-
-  dispatch({
-    type: 'EVENT_LIST_SUCCESS',
-    payload: data.events,
-  })
-}
 
 export const login =
   ({ emailAddress, password }) =>

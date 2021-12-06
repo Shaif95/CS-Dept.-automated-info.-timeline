@@ -1,10 +1,12 @@
 import axios from 'axios';
+import config from '../services/config';
 
-const Event_API_BASE_URL = "https://baylor-board.herokuapp.com/events";
+const Event_API_BASE_URL = config.geturl() + "events";
 
 class EventService {
 
     getEvent(){
+        console.log(Event_API_BASE_URL);
         return axios.get(Event_API_BASE_URL);
     }
 

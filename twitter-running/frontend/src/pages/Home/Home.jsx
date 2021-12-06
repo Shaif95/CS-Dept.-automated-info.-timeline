@@ -10,6 +10,7 @@ import banner1 from '../../assets/img/banner1.jpg'
 import banner2 from '../../assets/img/banner2.jpg'
 import fac from '../../assets/img/la.jpg'
 import back from '../../assets/img/baylor_background.jpg'
+import config from '../../services/config';
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -31,7 +32,7 @@ const Home = () => {
 
 }
 
-  const baseURL = 'https://baylor-board.herokuapp.com/events'
+  const baseURL = config.geturl() + "events"
 
   const [events, setPost] = React.useState(null)
 
