@@ -46,14 +46,7 @@ const TopBar = () => {
           </Link>
 
           <Navbar.Collapse className='justify-content-end'>
-            <div>
-              <a
-                href='https://baylor-board.herokuapp.com/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/'
-                className='navbar-brand'
-              >
-                API
-              </a>
-            </div>
+            
 
             <div className='icon-container'>
               <div className='icon-container p-2 mr-2 text-light'>
