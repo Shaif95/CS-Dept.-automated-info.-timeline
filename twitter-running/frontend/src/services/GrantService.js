@@ -1,6 +1,7 @@
 import axios from 'axios';
+import config from '../services/config';
 
-const Grant_API_BASE_URL = "https://baylor-board.herokuapp.com/awards";
+const Grant_API_BASE_URL = config.geturl() + "awards";
 
 class GrantService {
 

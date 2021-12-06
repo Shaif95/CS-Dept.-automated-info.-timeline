@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
 import Image from './la.jpg'
 import Image1 from './chicago.jpg'
+import config from '../services/config';
 
 class HomeComponent extends Component {
   constructor(props) {
@@ -14,16 +15,37 @@ class HomeComponent extends Component {
     this.state = {
       events: [],
       tweets: [],
+      awards:[],
+      newtweets : [],
     }
   }
 
   componentDidMount() {
-    axios.get(`https://baylor-board.herokuapp.com/events/slide`).then((res) => {
+
+    axios.get( config.geturl()  +`events/slide`).then((res) => {
       this.setState({ events: res.data.events })
     })
 
-    axios.get(`https://baylor-board.herokuapp.com/tweets`).then((res) => {
+  axios.get( config.geturl()  +"awards").then((res) => {
+      this.setState({ awards: res.data.awards })
+    })
+
+
+
+    axios.get( config.geturl()  +`tweets`).then((res) => {
       this.setState({ tweets: res.data.tweets })
+
+      for (let i = 0; i < this.state.tweets.length; i++) {
+ 
+  if(this.state.tweets[i].status == "ACCEPTED")
+  {
+    //console.log("happend")
+    this.state.newtweets.push(this.state.tweets[i])
+  }
+
+}
+
+  
     })
   }
 
@@ -44,18 +66,18 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.tweets.map((tweet) => (
-              <Col lg={4} md={6} key={tweet.id}>
+            {this.state.newtweets.map((tweets) => (
+              <Col lg={4} md={6} key={tweets.id}>
                 <Card>
                   <Card.Body>
                     <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweet.user}
+                      UserName : {tweets.user}
                     </Card.Title>
                     <Card.Text className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
+                      Tweet: <span>{tweets.text}</span>
                     </Card.Text>
                     <Card.Subtitle className='text-dark'>
-                      Status: {tweet.status}
+                      Status: {tweets.status}
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>
@@ -90,7 +112,29 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.events.slice(0, 3).map((event) => (
+            {this.state.awards.slice(0, 3).map((award) => (
+              <Col key={award.id}>
+                <Card className='h-100'>
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      Awards Title: {award.title}
+                    </Card.Title>
+                   
+                    <Card.Subtitle className='text-dark'>
+                      Awards Description: {award.description}
+                    </Card.Subtitle>
+
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+
+
+        <div>
+          <Row className='card-container'>
+            {this.state.events.reverse().slice(0, 3).map((event) => (
               <Col key={event.id}>
                 <Card className='h-100'>
                   <Card.Body>
@@ -111,6 +155,8 @@ class HomeComponent extends Component {
             ))}
           </Row>
         </div>
+
+
       </Carousel>
     )
   }

@@ -8,6 +8,7 @@ import Image from './la.jpg'
 import Image1 from './chicago.jpg'
 import Helmet from "react-helmet";
 import SockJsClient from 'react-stomp';
+import config from '../services/config';
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
 
@@ -26,7 +27,7 @@ class HomeComponent extends Component {
 
         this.state = {
           myExternalLib: null,
-                tweets: []
+                tweets: [],
         }
     
     }
@@ -34,44 +35,68 @@ class HomeComponent extends Component {
     componentDidMount(){
         
       
-        axios.get(`https://baylor-board.herokuapp.com/tweets`)
+        axios.get(config.geturl() + "tweets")
       .then(res => {
         this.setState({ tweets: res.data.tweets});
       })
 
 
    
- var socket = new SockJS('https://baylor-board.herokuapp.com/gs-guide-websocket');
-        this.stompClient = Stomp.over(socket);
-    this.stompClient.connect({}, function (frame) {
-            //setConnected();
-            console.log('Connected: ' + frame);
-            //this.stompClient.subscribe('/topic/greetings', function (greeting) {
-              //  this.showGreeting(JSON.parse(greeting.body).content);
-            //});
-        });
-
-
-
-
-
-    }
-
-
-showGreeting(message) {
-    }
  
-send(str)
-{
-  console.log(str);
-   this.stompClient.send("/app/hello", {}, JSON.stringify({'name': str }));
 
-   axios.put( 'https://baylor-board.herokuapp.com/' + 'tweets/' + str + '/' + 'status?status=ACCEPTED' );
+
+    }
+
+change(str)
+{
+    if(str.message=="a")
+    {
+  axios.put( config.geturl() + 'tweets/' + str.name + '/' + 'status?status=ACCEPTED' );
 
    console.log("changed on Database")
 
-   document.getElementById(str).innerHTML="ACCEPTED";
-   document.getElementById(str).style.backgroundColor = "#008000";
+   document.getElementById(str.name).innerHTML="ACCEPTED";
+   document.getElementById(str.name).style.backgroundColor = "#008000";
+}
+
+if(str.message=="c")
+    {
+  axios.put( config.geturl() + 'tweets/' + str.name + '/' + 'status?status=PENDING' );
+
+   console.log("changed on Database")
+
+   document.getElementById(str.name).innerHTML="PENDING";
+   document.getElementById(str.name).style.backgroundColor = "#008000";
+}
+
+}
+
+
+send(str)
+{
+  //console.log(str);
+   this.clientRef.sendMessage("/app/user-all",  JSON.stringify({
+
+    'name': str,
+    'message': "a"
+
+    }));
+
+ 
+
+}
+
+send2(str)
+{
+  //console.log(str);
+   this.clientRef.sendMessage("/app/user-all",  JSON.stringify({
+
+    'name': str,
+    'message': "c"
+
+    }));
+
+ 
 
 }
     
@@ -102,7 +127,8 @@ send(str)
                                  <th> Tweet User</th>
                                     <th> Tweet Text</th>
                                     <th> Tweet Status</th>
-                                    <th> Actions</th>
+                                    <th> ACCEPT </th>
+                                    <th> PENDING </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,6 +142,11 @@ send(str)
                                              <td>
  <button style={{marginLeft: "10px"}} onClick={ () => this.send(tweets.id)} className="btn btn-info">ACCEPT</button>
                                              </td>
+
+                                             <td>
+ <button style={{marginLeft: "10px"}} onClick={ () => this.send2(tweets.id)} className="btn btn-info">PENDING</button>
+                                             </td>
+
                                         </tr>
                                     )
                                 }
@@ -138,13 +169,26 @@ send(str)
             <div>
                 {this.state.myExternalLib !== null
                     ? "We can display any UI/whatever depending on myExternalLib without worrying about null references and race conditions."
-                    : "myExternalLib is loading..."}
+                    : ""}
             </div>
 
 <div>
-        <SockJsClient url='http://localhost:8080/gs-guide-websocket' topics={['/topics/all']}
-            onMessage={(msg) => { console.log(msg); }}
-            ref={ (client) => { this.clientRef = client }} />
+        <SockJsClient 
+  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
+  topics={['/topic/user']} 
+  onConnect={console.log("Connection established!")} 
+  //onDisconnect={console.log("Disconnected!")}
+  onMessage={(msg) => {   
+
+    console.log(msg.name);
+    this.change(msg);
+    
+
+   } }
+  ref={(client) => {
+                                  this.clientRef = client
+                              }}  
+/> 
       </div>
 
 

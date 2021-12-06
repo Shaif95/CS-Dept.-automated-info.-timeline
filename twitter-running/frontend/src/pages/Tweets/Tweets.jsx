@@ -8,15 +8,28 @@ import './Tweets.scss'
 import AddIcon from '@mui/icons-material/Add'
 import { Link } from 'react-router-dom'
 
+
 const Tweets = () => {
   const dispatch = useDispatch()
   const tweetList = useSelector((state) => state.tweetList)
   const { loading, error, tweets } = tweetList
+  const newtweets = []
 
   const redirect = '/login'
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+for (let i = 0; i < tweets.length; i++) {
+ 
+  if(tweets[i].status == "ACCEPTED")
+  {
+    console.log("happend")
+    newtweets.push(tweets[i])
+  }
+
+}
+  
 
   useEffect(() => {
     dispatch(listTweets())
@@ -44,7 +57,7 @@ const Tweets = () => {
           <></>
         ) : (
           <Row className='card-container'>
-            {tweets.map((tweet) => (
+            {newtweets.map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card>
                   <Card.Body>
