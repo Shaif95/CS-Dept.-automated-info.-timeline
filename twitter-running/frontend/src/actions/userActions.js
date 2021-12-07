@@ -5,7 +5,7 @@ export const listTweets = () => async (dispatch) => {
     dispatch({ type: 'TWEET_LIST_REQUEST' })
 
     const { data } = await axios.get(
-      `http://localhost:8080/tweets?status=ACCEPTED`
+      `https://baylor-board.herokuapp.com/tweets?status=ACCEPTED`
     )
 
     dispatch({
@@ -13,7 +13,7 @@ export const listTweets = () => async (dispatch) => {
       payload: data.tweets,
     })
   } catch (error) {
-    dispatch({
+    dispatch({  
       type: 'TWEET_LIST_FAIL',
       payload:
         error.response && error.response.data.message
@@ -28,7 +28,7 @@ export const listEvents = () => async (dispatch) => {
     dispatch({ type: 'EVENT_LIST_REQUEST' })
 
     const { data } = await axios.get(
-      `http://localhost:8080/events`
+      `https://baylor-board.herokuapp.com/events`
     )
 
     dispatch({
@@ -53,7 +53,7 @@ export const login =
       }
 
       const { data } = await axios.post(
-        'http://localhost:8080/users/login',
+        'https://baylor-board.herokuapp.com/users/login',
         { emailAddress, password },
         config
       )
@@ -90,7 +90,7 @@ export const register =
       }
 
       const { data } = await axios.post(
-        'http://localhost:8080/users',
+        'https://baylor-board.herokuapp.com/users',
         { firstName, lastName, emailAddress, password },
         config
       )

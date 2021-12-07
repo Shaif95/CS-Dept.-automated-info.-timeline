@@ -13,22 +13,22 @@ const Tweets = () => {
   const dispatch = useDispatch()
   const tweetList = useSelector((state) => state.tweetList)
   const { loading, error, tweets } = tweetList
-  const newtweets = []
+  // const newtweets = []
 
   const redirect = '/login'
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-for (let i = 0; i < tweets.length; i++) {
+// for (let i = 0; i < tweets.length; i++) {
  
-  if(tweets[i].status == "ACCEPTED")
-  {
-    console.log("happend")
-    newtweets.push(tweets[i])
-  }
+//   if(tweets[i].status == "ACCEPTED")
+//   {
+//     console.log("happend")
+//     newtweets.push(tweets[i])
+//   }
 
-}
+// }
   
 
   useEffect(() => {
@@ -57,7 +57,7 @@ for (let i = 0; i < tweets.length; i++) {
           <></>
         ) : (
           <Row className='card-container'>
-            {newtweets.map((tweet) => (
+            {tweets.map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card>
                   <Card.Body>
