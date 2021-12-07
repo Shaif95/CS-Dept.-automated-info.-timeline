@@ -5,7 +5,7 @@ export const listTweets = () => async (dispatch) => {
     dispatch({ type: 'TWEET_LIST_REQUEST' })
 
     const { data } = await axios.get(
-      `https://baylor-board.herokuapp.com/tweets?status=ACCEPTED`
+      `http://localhost:8080/tweets?status=ACCEPTED`
     )
 
     dispatch({
@@ -53,7 +53,7 @@ export const login =
       }
 
       const { data } = await axios.post(
-        'https://baylor-board.herokuapp.com/users/login',
+        'http://localhost:8080/users/login',
         { emailAddress, password },
         config
       )
@@ -90,7 +90,7 @@ export const register =
       }
 
       const { data } = await axios.post(
-        'https://baylor-board.herokuapp.com/users',
+        'http://localhost:8080/users',
         { firstName, lastName, emailAddress, password },
         config
       )
