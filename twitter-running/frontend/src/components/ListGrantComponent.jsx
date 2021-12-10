@@ -41,11 +41,11 @@ class ListGrantComponent extends Component {
             <div>
                  <h2 className="text-center">Awards List</h2>
                  <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addGrant}> Add Award</button>
+                    <button style={{marginLeft: "20px"}}  className="btn btn-primary" onClick={this.addGrant}> Add Award</button>
                  </div>
                  <br></br>
                  <div className = "row">
-                        <table className = "table table-striped table-bordered">
+                        <table style={{marginLeft: "20px"}}  className = "table table-striped table-bordered">
 
                             <thead>
                                 <tr>
@@ -62,9 +62,9 @@ class ListGrantComponent extends Component {
                                              <td> {Grant.title} </td>   
                                              <td> {Grant.description}</td>
                                              <td>
- <button onClick={ () => this.editGrant(Grant.id)} className="btn btn-info">Update </button>
- <button style={{marginLeft: "10px"}} onClick={ () => this.deleteGrant(Grant.id)} className="btn btn-danger">Delete </button>
- <button style={{marginLeft: "10px"}} onClick={ () => this.viewGrant(Grant.id)} className="btn btn-info">View </button>
+<button onClick={ () => this.editGrant(Grant.id)} className="btn btn-info">Update </button></td>
+<td><button style={{marginLeft:"10px"}}onClick={()=>this.deleteGrant(Grant.id)}className="btn btn-danger">Delete</button></td>
+<td><button style={{marginLeft: "10px"}} onClick={ () => this.viewGrant(Grant.id)} className="btn btn-info">View </button>
                                              </td>
                                         </tr>
                                     )

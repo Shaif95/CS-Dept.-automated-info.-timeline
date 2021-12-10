@@ -41,11 +41,11 @@ class ListEventComponent extends Component {
             <div>
                  <h2 className="text-center">Event List</h2>
                  <div className = "row">
-                    <button className="btn btn-primary" onClick={this.addEvent}> Add Event</button>
+                    <button style={{marginLeft: "20px"}} className="btn btn-primary" onClick={this.addEvent}> Add Event</button>
                  </div>
                  <br></br>
                  <div className = "row">
-                        <table className = "table table-striped table-bordered">
+                        <table style={{marginLeft: "20px"}} className = "table table-striped table-bordered">
 
                             <thead>
                                 <tr>
@@ -64,9 +64,9 @@ class ListEventComponent extends Component {
                                              <td> {event.coordinator}</td>
                                              <td> {event.description}</td>
                                              <td>
- <button onClick={ () => this.editEvent(event.id)} className="btn btn-info">Update </button>
- <button style={{marginLeft: "10px"}} onClick={ () => this.deleteEvent(event.id)} className="btn btn-danger">Delete </button>
- <button style={{marginLeft: "10px"}} onClick={ () => this.viewEvent(event.id)} className="btn btn-info">View </button>
+ <button onClick={ () => this.editEvent(event.id)} className="btn btn-info">Update </button></td>
+<td><button style={{marginLeft: "10px"}}onClick={()=>this.deleteEvent(event.id)}className="btn btn-danger">Delete</button></td>
+<td> <button style={{marginLeft: "10px"}} onClick={ () => this.viewEvent(event.id)} className="btn btn-info">View </button>
                                              </td>
                                         </tr>
                                     )
