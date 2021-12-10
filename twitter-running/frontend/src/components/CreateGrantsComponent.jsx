@@ -38,7 +38,7 @@ class CreateGrantsComponent extends Component {
     saveOrUpdateEvent = (e) => {
         e.preventDefault();
 
-        if( this.state.title.length === 0 || this.state.title.description === 0)
+        if( this.state.title.length == 0 || this.state.title.description == 0)
            {
            alert("All fields are needed other than images");
            }
@@ -67,7 +67,7 @@ class CreateGrantsComponent extends Component {
     }
 
     changeLastNameHandler= (event) => {
-        this.setState({coordinator: event.target.value});
+        this.setState({description: event.target.value});
     }
 
     changeImageHandler= (event) => {
@@ -110,17 +110,8 @@ class CreateGrantsComponent extends Component {
                                        
                                         <div className = "form-group">
                                             <label style={{color: 'black'}} > Award Description: </label>
-                                           <CKEditor name="description" 
-                    editor={ ClassicEditor }
-                placeholder="Description" 
-                value={this.state.description}
-                onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        this.setState({description: data});
-                    } }
-           
-                
-                />
+                                            <input placeholder="Title" name="title" className="form-control" 
+                                                value={this.state.description} onChange={this.changeLastNameHandler}/>
                                         </div>
 
                         
