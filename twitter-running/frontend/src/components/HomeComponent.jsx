@@ -108,7 +108,7 @@ if(str.message=="c")
           <Row className='card-container'>
             {this.state.newtweets.map((tweets) => (
               <Col lg={4} md={6} key={tweets.id}>
-                <Card>
+                <Card id = {tweets.id}>
                   <Card.Body>
                     <Card.Title className='mb-2 text-dark'>
                       UserName : {tweets.user}

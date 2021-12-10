@@ -27,15 +27,7 @@ const Home = () => {
     dispatch(listTweets())
   }, [dispatch])
 
-//   for (let i = 0; i < tweets.length; i++) {
- 
-//   if(tweets[i].status == "ACCEPTED")
-//   {
-//     console.log("happend")
-//     newtweets.push(tweets[i])
-//   }
 
-// }
 
   const baseURL = config.geturl() + "events"
 
@@ -221,7 +213,7 @@ if(str.message=="c")
           <Row className='card-container'>
             {tweets.slice(0,30).map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
-                <Card>
+                <Card id = {tweet.id}>
                   <Card.Body>
                     <Card.Title className='mb-2 text-dark'>
                       UserName : {tweet.user}
