@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import GrantService from '../services/GrantService';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './res/grant.css'
 
@@ -38,7 +36,7 @@ class CreateGrantsComponent extends Component {
     saveOrUpdateEvent = (e) => {
         e.preventDefault();
 
-        if( this.state.title.length == 0 || this.state.title.description == 0)
+        if( this.state.title.length === 0 || this.state.title.description === 0)
            {
            alert("All fields are needed other than images");
            }
