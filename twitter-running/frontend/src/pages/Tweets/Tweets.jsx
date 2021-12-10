@@ -7,6 +7,8 @@ import Meta from '../../components/Meta'
 import './Tweets.scss'
 import AddIcon from '@mui/icons-material/Add'
 import { Link } from 'react-router-dom'
+import SockJsClient from 'react-stomp';
+import SockJS from 'sockjs-client'
 
 
 const Tweets = () => {
@@ -20,20 +22,45 @@ const Tweets = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-// for (let i = 0; i < tweets.length; i++) {
- 
-//   if(tweets[i].status == "ACCEPTED")
-//   {
-//     console.log("happend")
-//     newtweets.push(tweets[i])
-//   }
 
-// }
   
 
   useEffect(() => {
     dispatch(listTweets())
   }, [dispatch])
+
+
+function refreshPage() {
+    window.location.reload(true);
+  }
+  
+
+function change(str)
+{
+    if(str.message=="a")
+    {
+
+  const element = document.getElementById(str.name);  // Get element
+  if( element != null)
+  {
+  element.style.visibility = "visible";
+  console.log("changed on Database");
+}
+else
+{
+  refreshPage();
+}
+
+}
+
+if(str.message=="c")
+    {
+      refreshPage();
+}
+
+}
+
+
 
   return (
     <>
@@ -57,18 +84,20 @@ const Tweets = () => {
           <></>
         ) : (
           <Row className='card-container'>
-            {tweets.map((tweet) => (
-              <Col lg={4} md={6} key={tweet.id}>
-                <Card>
+            {tweets.slice(0,30).map((tweet) => (
+              <Col id ="col" lg={4} md={6} key={tweet.id}>
+                <Card id = {tweet.id}>
                   <Card.Body>
+                     
                     <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweet.user}
+                     <img src={tweet.userImage} style={{ height: '50% ' }}></img>
                     </Card.Title>
                     <Card.Text className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
+                    {tweet.user}
+                     
                     </Card.Text>
                     <Card.Subtitle className='text-dark'>
-                      Status: {tweet.status}                      
+                       Tweet: <span>{tweet.text}</span>                     
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>
@@ -77,6 +106,26 @@ const Tweets = () => {
           </Row>
         )}
       </Container>
+
+
+
+<div>
+        <SockJsClient 
+  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
+  topics={['/topic/user']} 
+  onConnect={console.log("Connection established!")} 
+  //onDisconnect={console.log("Disconnected!")}
+  onMessage={(msg) => {   
+
+    console.log(msg.name);
+    change(msg);
+    
+
+   } }
+ 
+/> 
+      </div>
+
     </>
   )
 }

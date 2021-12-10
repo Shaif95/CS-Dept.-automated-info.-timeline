@@ -7,6 +7,9 @@ import { Carousel } from 'react-responsive-carousel'
 import Image from './la.jpg'
 import Image1 from './chicago.jpg'
 import config from '../services/config';
+import SockJS from 'sockjs-client'
+import SockJsClient from 'react-stomp';
+
 
 class HomeComponent extends Component {
   constructor(props) {
@@ -47,10 +50,47 @@ class HomeComponent extends Component {
 
   
     })
+
+
   }
+
+
+
+
+
+ change(str)
+{
+    if(str.message=="a")
+    {
+
+  const element = document.getElementById(str.name);  // Get element
+  if( element != null)
+  {
+  element.style.visibility = "visible";
+  console.log("changed on Database");
+}
+else
+{
+ window.location.reload(true);
+}
+
+}
+
+if(str.message=="c")
+    {
+       window.location.reload(true);
+}
+
+}
+
+
+
+
+
 
   render() {
     return (
+
       <Carousel
         autoPlay
         interval='5000'
@@ -160,7 +200,35 @@ class HomeComponent extends Component {
         </div>
 
 
+
+<div>
+        <SockJsClient 
+  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
+  topics={['/topic/user']} 
+  onConnect={console.log("Connection established!")} 
+  //onDisconnect={console.log("Disconnected!")}
+  onMessage={(msg) => {   
+
+    console.log(msg.name);
+    this.change(msg);
+    
+
+   } }
+  ref={(client) => {
+                                  this.clientRef = client
+                              }}  
+/> 
+      </div>
+
+
+
+
       </Carousel>
+ 
+
+
+
+
     )
   }
 }

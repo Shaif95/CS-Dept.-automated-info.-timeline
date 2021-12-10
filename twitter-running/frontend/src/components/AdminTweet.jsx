@@ -157,21 +157,7 @@ send2(str)
               
 
 
-            {/* Load the myExternalLib.js library. */}
-            <Helmet
-                script={[{ src: "https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js" }]}
-                script={[{ src: "https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js" }]}
-                // Helmet doesn't support `onload` in script objects so we have to hack in our own
-                
-                onChangeClientState={(newState, addedTags) => this.handleScriptInject(addedTags)}
-
-            />
-            <div>
-                {this.state.myExternalLib !== null
-                    ? "We can display any UI/whatever depending on myExternalLib without worrying about null references and race conditions."
-                    : ""}
-            </div>
-
+           
 <div>
         <SockJsClient 
   url = 'https://baylor-board.herokuapp.com/websocket-chat/'

@@ -9,8 +9,13 @@ import Meta from '../../components/Meta'
 import banner1 from '../../assets/img/banner1.jpg'
 import banner2 from '../../assets/img/banner2.jpg'
 import fac from '../../assets/img/la.jpg'
-import back from '../../assets/img/baylor_background.jpg'
+import buback from '../../assets/img/baylor_background.jpg'
+import back from '../../assets/img/whiteback.jpg'
 import config from '../../services/config';
+import SockJsClient from 'react-stomp';
+import SockJS from 'sockjs-client'
+
+
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -43,6 +48,41 @@ const Home = () => {
   }, [])
 
   if (!events) return null
+
+
+
+function refreshPage() {
+    window.location.reload(true);
+  }
+  
+
+function change(str)
+{
+    if(str.message=="a")
+    {
+
+  const element = document.getElementById(str.name);  // Get element
+  if( element != null)
+  {
+  element.style.visibility = "visible";
+  console.log("changed on Database");
+}
+else
+{
+  refreshPage();
+}
+
+}
+
+if(str.message=="c")
+    {
+      refreshPage();
+}
+
+}
+
+
+
 
   return (
     <>
@@ -179,7 +219,7 @@ const Home = () => {
           <></>
         ) : (
           <Row className='card-container'>
-            {tweets.map((tweet) => (
+            {tweets.slice(0,30).map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card>
                   <Card.Body>
@@ -201,6 +241,28 @@ const Home = () => {
 
 
       </Container>
+
+
+
+
+<div>
+        <SockJsClient 
+  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
+  topics={['/topic/user']} 
+  onConnect={console.log("Connection established!")} 
+  //onDisconnect={console.log("Disconnected!")}
+  onMessage={(msg) => {   
+
+    console.log(msg.name);
+    change(msg);
+    
+
+   } }
+ 
+/> 
+      </div>
+
+
     </>
   )
 }
