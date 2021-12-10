@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listTweets } from '../../actions/userActions'
 import Meta from '../../components/Meta'
@@ -8,6 +8,7 @@ import './Tweets.scss'
 import AddIcon from '@mui/icons-material/Add'
 import { Link } from 'react-router-dom'
 import SockJsClient from 'react-stomp'
+import Pagination from '../../components/Pagination'
 
 const Tweets = () => {
   const dispatch = useDispatch()
@@ -16,6 +17,9 @@ const Tweets = () => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(6)
 
   useEffect(() => {
     dispatch(listTweets())
@@ -41,6 +45,12 @@ const Tweets = () => {
     }
   }
 
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentTweets = tweets.slice(indexOfFirstPost, indexOfLastPost)
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
   return (
     <>
       <Meta title='Tweets' />
@@ -62,29 +72,36 @@ const Tweets = () => {
         ) : error ? (
           <></>
         ) : (
-          <Row className='card-container'>
-            {tweets.slice(0, 30).map((tweet) => (
-              <Col id='col' lg={4} md={6} key={tweet.id}>
-                <Card id={tweet.id}>
-                  <Card.Body>
-                    <Card.Title className='mb-2 text-dark'>
-                      <img
-                        src={tweet.userImage}
-                        style={{ height: '50% ' }}
-                        alt=''
-                      ></img>
-                    </Card.Title>
-                    <Card.Subtitle className='text-dark'>
-                      {tweet.user}
-                    </Card.Subtitle>
-                    <Card.Text className='text-dark mt-1'>
-                      Tweet: <span>{tweet.text}</span>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+          <Container fluid>
+            <Row className='card-container'>
+              {currentTweets.map((tweet) => (
+                <Col id='col' lg={4} md={6} key={tweet.id}>
+                  <Card id={tweet.id}>
+                    <Card.Body>
+                      <Card.Title className='mb-2 text-dark'>
+                        <img
+                          src={tweet.userImage}
+                          style={{ height: '50% ' }}
+                          alt=''
+                        ></img>
+                      </Card.Title>
+                      <Card.Subtitle className='text-dark'>
+                        {tweet.user}
+                      </Card.Subtitle>
+                      <Card.Text className='text-dark mt-1'>
+                        Tweet: <span>{tweet.text}</span>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={tweets.length}
+              paginate={paginate}
+            />
+          </Container>
         )}
       </Container>
 

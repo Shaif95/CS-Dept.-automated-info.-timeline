@@ -184,7 +184,7 @@ const Home = () => {
           <></>
         ) : (
           <Row className='card-container'>
-            {tweets.slice(0, 30).map((tweet) => (
+            {tweets.slice(0, 6).map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card id={tweet.id}>
                   {/* <Card.Body>

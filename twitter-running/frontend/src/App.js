@@ -39,7 +39,7 @@ function App() {
         <div className='main-content'>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/tweets' component={Tweets} />
+            <Route exact path='/tweets/:id?' component={Tweets} />
             <Route exact path='/grant' component={Grant} />
             <Route exact path='/admintweet' component={AdminTweet} />
             <Route exact path='/adminpage' component={AdminPage} />
@@ -83,7 +83,7 @@ function App() {
               component={UpdateGrantComponent}
             ></Route>
 
-            <Route path='' component={NotFound} />
+            {/* <Route path='' component={NotFound} /> */}
           </Switch>
         </div>
       </div>
