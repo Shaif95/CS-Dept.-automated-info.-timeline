@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EventService from '../services/EventService';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import back from '../assets/img/whiteback.jpg'
 
 import './res/grant.css'
 
@@ -41,22 +42,50 @@ class CreateEventComponent extends Component {
     }
     saveOrUpdateEvent = (e) => {
         e.preventDefault();
-    let em = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description, images : this.state.images};
-        console.log('event => ' + JSON.stringify(em));
 
-        // step 5
+        const img1 =[];
+        let em = null;
+
+           if( this.state.title.length == 0 || this.state.coordinator.length == 0  ||  this.state.title.description == 0)
+           {
+           alert("All fields are needed other than images");
+           }
+           else
+           {
+
+        if( this.state.images.length == 0 )
+        {
+            console.log("Default Image");
+            img1.push("https://i.ibb.co/zmmxXb3/whiteback.jpg");
+            //console.log(img)
+
+
+    em = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description, images : img1};
+        console.log('event => ' + JSON.stringify(em));
+        }
+
+else
+{
+
+    em = {title: this.state.title, coordinator: this.state.coordinator, description: this.state.description, images : this.state.images};
+        console.log('event => ' + JSON.stringify(em));
+    }
+
+// step 5
         if(this.state.id === '_add'){
             EventService.createEvent(em).then(res =>{
-                this.props.history.push('/events');
+                this.props.history.push('/userevents');
             });
         }else{
             EventService.updateEvent(em, this.state.id).then( res => {
-                this.props.history.push('/events');
+                this.props.history.push('/userevents');
             });
+        }
         }
     }
     
     changeFirstNameHandler= (event) => {
+        
         this.setState({title: event.target.value});
     }
 
@@ -67,7 +96,11 @@ class CreateEventComponent extends Component {
     changeImageHandler= (event) => {
 
         const img =[];
-        img.push(event.target.value)
+
+        
+
+        img.push(event.target.value);
+    
 
         this.setState({images: img});
     }
@@ -77,8 +110,10 @@ class CreateEventComponent extends Component {
     }
 
     cancel(){
-        this.props.history.push('/events');
+        this.props.history.push('/userevents');
     }
+
+
 
     getTitle(){
         if(this.state.id === '_add'){

@@ -37,19 +37,29 @@ class CreateGrantsComponent extends Component {
     }
     saveOrUpdateEvent = (e) => {
         e.preventDefault();
+
+        if( this.state.title.length == 0 || this.state.title.description == 0)
+           {
+           alert("All fields are needed other than images");
+           }
+
+           else
+           {
+
     let em = {title: this.state.title, description: this.state.description};
         console.log('award => ' + JSON.stringify(em));
 
         // step 5
         if(this.state.id === '_add'){
             GrantService.createGrant(em).then(res =>{
-                this.props.history.push('/awards');
+                this.props.history.push('/userawards');
             });
         }else{
             GrantService.updateGrant(em, this.state.id).then( res => {
-                this.props.history.push('/awards');
+                this.props.history.push('/userawards');
             });
         }
+    }
     }
     
     changeFirstNameHandler= (event) => {
@@ -73,7 +83,7 @@ class CreateGrantsComponent extends Component {
     }
 
     cancel(){
-        this.props.history.push('/awards');
+        this.props.history.push('/userawards');
     }
 
     getTitle(){
