@@ -93,8 +93,8 @@ if(str.message=="c")
 
       <Carousel
         autoPlay
-        interval='5000'
-        transitionTime='2000'
+        interval='3000'
+        transitionTime='1000'
         infiniteLoop='true'
       >
         <div>
