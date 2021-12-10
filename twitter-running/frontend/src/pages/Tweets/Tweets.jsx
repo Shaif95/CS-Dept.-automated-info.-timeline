@@ -7,60 +7,39 @@ import Meta from '../../components/Meta'
 import './Tweets.scss'
 import AddIcon from '@mui/icons-material/Add'
 import { Link } from 'react-router-dom'
-import SockJsClient from 'react-stomp';
-import SockJS from 'sockjs-client'
-
+import SockJsClient from 'react-stomp'
 
 const Tweets = () => {
   const dispatch = useDispatch()
   const tweetList = useSelector((state) => state.tweetList)
   const { loading, error, tweets } = tweetList
-  // const newtweets = []
-
-  const redirect = '/login'
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
-
-
-  
 
   useEffect(() => {
     dispatch(listTweets())
   }, [dispatch])
 
-
-function refreshPage() {
-    window.location.reload(true);
+  function refreshPage() {
+    window.location.reload(true)
   }
-  
 
-function change(str)
-{
-    if(str.message=="a")
-    {
+  function change(str) {
+    if (str.message === 'a') {
+      const element = document.getElementById(str.name) // Get element
+      if (element != null) {
+        element.style.visibility = 'visible'
+        console.log('changed on Database')
+      } else {
+        refreshPage()
+      }
+    }
 
-  const element = document.getElementById(str.name);  // Get element
-  if( element != null)
-  {
-  element.style.visibility = "visible";
-  console.log("changed on Database");
-}
-else
-{
-  refreshPage();
-}
-
-}
-
-if(str.message=="c")
-    {
-      refreshPage();
-}
-
-}
-
-
+    if (str.message === 'c') {
+      refreshPage()
+    }
+  }
 
   return (
     <>
@@ -84,21 +63,23 @@ if(str.message=="c")
           <></>
         ) : (
           <Row className='card-container'>
-            {tweets.slice(0,30).map((tweet) => (
-              <Col id ="col" lg={4} md={6} key={tweet.id}>
-                <Card id = {tweet.id}>
+            {tweets.slice(0, 30).map((tweet) => (
+              <Col id='col' lg={4} md={6} key={tweet.id}>
+                <Card id={tweet.id}>
                   <Card.Body>
-                     
                     <Card.Title className='mb-2 text-dark'>
-                     <img src={tweet.userImage} style={{ height: '50% ' }}></img>
+                      <img
+                        src={tweet.userImage}
+                        style={{ height: '50% ' }}
+                        alt=''
+                      ></img>
                     </Card.Title>
-                    <Card.Text className='text-dark'>
-                    {tweet.user}
-                     
-                    </Card.Text>
                     <Card.Subtitle className='text-dark'>
-                       Tweet: <span>{tweet.text}</span>                     
+                      {tweet.user}
                     </Card.Subtitle>
+                    <Card.Text className='text-dark mt-1'>
+                      Tweet: <span>{tweet.text}</span>
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
@@ -107,25 +88,18 @@ if(str.message=="c")
         )}
       </Container>
 
-
-
-<div>
-        <SockJsClient 
-  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
-  topics={['/topic/user']} 
-  onConnect={console.log("Connection established!")} 
-  //onDisconnect={console.log("Disconnected!")}
-  onMessage={(msg) => {   
-
-    console.log(msg.name);
-    change(msg);
-    
-
-   } }
- 
-/> 
+      <div>
+        <SockJsClient
+          url='https://baylor-board.herokuapp.com/websocket-chat/'
+          topics={['/topic/user']}
+          onConnect={console.log('Connection established!')}
+          //onDisconnect={console.log("Disconnected!")}
+          onMessage={(msg) => {
+            console.log(msg.name)
+            change(msg)
+          }}
+        />
       </div>
-
     </>
   )
 }

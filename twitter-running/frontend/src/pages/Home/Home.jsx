@@ -9,27 +9,20 @@ import Meta from '../../components/Meta'
 import banner1 from '../../assets/img/banner1.jpg'
 import banner2 from '../../assets/img/banner2.jpg'
 import fac from '../../assets/img/la.jpg'
-import buback from '../../assets/img/baylor_background.jpg'
 import back from '../../assets/img/whiteback.jpg'
-import config from '../../services/config';
-import SockJsClient from 'react-stomp';
-import SockJS from 'sockjs-client'
-
-
+import config from '../../services/config'
+import SockJsClient from 'react-stomp'
 
 const Home = () => {
   const dispatch = useDispatch()
   const tweetList = useSelector((state) => state.tweetList)
   const { loading, error, tweets } = tweetList
-  const newtweets = []
 
   useEffect(() => {
     dispatch(listTweets())
   }, [dispatch])
 
-
-
-  const baseURL = config.geturl() + "events"
+  const baseURL = config.geturl() + 'events'
 
   const [events, setPost] = React.useState(null)
 
@@ -37,44 +30,29 @@ const Home = () => {
     axios.get(baseURL).then((response) => {
       setPost(response.data.events)
     })
-  }, [])
+  }, [baseURL])
 
   if (!events) return null
 
-
-
-function refreshPage() {
-    window.location.reload(true);
+  function refreshPage() {
+    window.location.reload(true)
   }
-  
 
-function change(str)
-{
-    if(str.message=="a")
-    {
+  function change(str) {
+    if (str.message === 'a') {
+      const element = document.getElementById(str.name) // Get element
+      if (element != null) {
+        element.style.visibility = 'visible'
+        console.log('changed on Database')
+      } else {
+        refreshPage()
+      }
+    }
 
-  const element = document.getElementById(str.name);  // Get element
-  if( element != null)
-  {
-  element.style.visibility = "visible";
-  console.log("changed on Database");
-}
-else
-{
-  refreshPage();
-}
-
-}
-
-if(str.message=="c")
-    {
-      refreshPage();
-}
-
-}
-
-
-
+    if (str.message === 'c') {
+      refreshPage()
+    }
+  }
 
   return (
     <>
@@ -196,71 +174,71 @@ if(str.message=="c")
                     ))}
                 </Row>
               </Carousel.Item>
-
-
-
-
             </Carousel>
           </div>
         </div>
 
-
-{loading ? (
+        {loading ? (
           <></>
         ) : error ? (
           <></>
         ) : (
           <Row className='card-container'>
-            {tweets.slice(0,30).map((tweet) => (
+            {tweets.slice(0, 30).map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
-                <Card id = {tweet.id}>
-                  <Card.Body>
-
-                   <Card.Title className='mb-2 text-dark'>
-                     <img src={tweet.userImage} style={{ height: '50% ' }}></img>
+                <Card id={tweet.id}>
+                  {/* <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      <img
+                        src={tweet.userImage}
+                        style={{ height: '50% ' }}
+                        alt=''
+                      ></img>
                     </Card.Title>
-                    
+
                     <Card.Title className='mb-2 text-dark'>
                       UserName : {tweet.user}
                     </Card.Title>
-                    <Card.Text className='text-dark'>
-                    {tweet.user}
-                     
-                    </Card.Text>
-                   <Card.Subtitle className='text-dark'>
-                       Tweet: <span>{tweet.text}</span>                     
+                    <Card.Text className='text-dark'>{tweet.user}</Card.Text>
+                    <Card.Subtitle className='text-dark'>
+                      Tweet: <span>{tweet.text}</span>
                     </Card.Subtitle>
+                  </Card.Body> */}
+
+                  <Card.Body>
+                    <Card.Title className='mb-2 text-dark'>
+                      <img
+                        src={tweet.userImage}
+                        style={{ height: '50% ' }}
+                        alt=''
+                      ></img>
+                    </Card.Title>
+                    <Card.Subtitle className='text-dark'>
+                      {tweet.user}
+                    </Card.Subtitle>
+                    <Card.Text className='text-dark mt-1'>
+                      Tweet: <span>{tweet.text}</span>
+                    </Card.Text>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
           </Row>
         )}
-
-
       </Container>
 
-
-
-
-<div>
-        <SockJsClient 
-  url = 'https://baylor-board.herokuapp.com/websocket-chat/'
-  topics={['/topic/user']} 
-  onConnect={console.log("Connection established!")} 
-  //onDisconnect={console.log("Disconnected!")}
-  onMessage={(msg) => {   
-
-    console.log(msg.name);
-    change(msg);
-    
-
-   } }
- 
-/> 
+      <div>
+        <SockJsClient
+          url='https://baylor-board.herokuapp.com/websocket-chat/'
+          topics={['/topic/user']}
+          onConnect={console.log('Connection established!')}
+          //onDisconnect={console.log("Disconnected!")}
+          onMessage={(msg) => {
+            console.log(msg.name)
+            change(msg)
+          }}
+        />
       </div>
-
-
     </>
   )
 }

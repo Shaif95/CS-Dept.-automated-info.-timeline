@@ -49,7 +49,7 @@ class ViewEventComponent extends Component {
                       src={this.state.event.images}
                       style={{ height: '50% ' }}
                       alt=''
-                    ></img>
+                    />
                   </div>
                 </div>
               </div>

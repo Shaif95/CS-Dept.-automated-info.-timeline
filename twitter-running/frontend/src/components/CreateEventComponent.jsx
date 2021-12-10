@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import EventService from '../services/EventService';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import back from '../assets/img/whiteback.jpg'
+// import back from '../assets/img/whiteback.jpg'
 
 import './res/grant.css'
 
@@ -46,14 +46,14 @@ class CreateEventComponent extends Component {
         const img1 =[];
         let em = null;
 
-           if( this.state.title.length == 0 || this.state.coordinator.length == 0  ||  this.state.title.description == 0)
+           if( this.state.title.length === 0 || this.state.coordinator.length === 0  ||  this.state.title.description === 0)
            {
            alert("All fields are needed other than images");
            }
            else
            {
 
-        if( this.state.images.length == 0 )
+        if( this.state.images.length === 0 )
         {
             console.log("Default Image");
             img1.push("https://i.ibb.co/zmmxXb3/whiteback.jpg");
