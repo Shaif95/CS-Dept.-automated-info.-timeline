@@ -106,18 +106,24 @@ if(str.message=="c")
 
         <div>
           <Row className='card-container'>
-            {this.state.newtweets.map((tweets) => (
-              <Col lg={4} md={6} key={tweets.id}>
-                <Card id = {tweets.id}>
+            {this.state.newtweets.map((tweet) => (
+              <Col lg={4} md={6} key={tweet.id}>
+                <Card id = {tweet.id}>
                   <Card.Body>
+
+                   <Card.Title className='mb-2 text-dark'>
+                     <img src={tweet.userImage} style={{ height: '60px', width: '60px' }}></img>
+                    </Card.Title>
+                    
                     <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweets.user}
+                      UserName : {tweet.user}
                     </Card.Title>
                     <Card.Text className='text-dark'>
-                      Tweet: <span>{tweets.text}</span>
+                    {tweet.user}
+                     
                     </Card.Text>
-                    <Card.Subtitle className='text-dark'>
-                      Status: {tweets.status}
+                   <Card.Subtitle className='text-dark'>
+                       Tweet: <span>{tweet.text}</span>                     
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>

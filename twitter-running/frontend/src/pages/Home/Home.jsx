@@ -215,14 +215,20 @@ if(str.message=="c")
               <Col lg={4} md={6} key={tweet.id}>
                 <Card id = {tweet.id}>
                   <Card.Body>
+
+                   <Card.Title className='mb-2 text-dark'>
+                     <img src={tweet.userImage} style={{ height: '50% ' }}></img>
+                    </Card.Title>
+                    
                     <Card.Title className='mb-2 text-dark'>
                       UserName : {tweet.user}
                     </Card.Title>
                     <Card.Text className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
+                    {tweet.user}
+                     
                     </Card.Text>
-                    <Card.Subtitle className='text-dark'>
-                      Status: {tweet.status}
+                   <Card.Subtitle className='text-dark'>
+                       Tweet: <span>{tweet.text}</span>                     
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>
