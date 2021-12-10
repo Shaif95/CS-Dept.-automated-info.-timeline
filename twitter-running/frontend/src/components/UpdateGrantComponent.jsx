@@ -35,7 +35,7 @@ class UpdateGrantComponent extends Component {
        let old_id = this.state.id;
        console.log(Grant)
 
-        axios.put('http://localhost:8080/awards/'+old_id,  Grant, { headers: {    'Content-Type': 'application/json' } });
+        axios.put('https://baylor-board.herokuapp.com/awards/'+old_id,  Grant, { headers: {    'Content-Type': 'application/json' } });
 
         this.props.history.push('/awards');
     }

@@ -35,7 +35,7 @@ class UpdateEventComponent extends Component {
        let old_id = this.state.id;
        console.log(event)
 
-        axios.put('http://localhost:8080/events/'+old_id,  event, { headers: {    'Content-Type': 'application/json' } });
+        axios.put('https://baylor-board.herokuapp.com/events/'+old_id,  event, { headers: {    'Content-Type': 'application/json' } });
 
         this.props.history.push('/events');
     }
