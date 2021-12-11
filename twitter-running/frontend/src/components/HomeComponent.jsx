@@ -54,8 +54,8 @@ class HomeComponent extends Component {
     return (
       <Carousel
         autoPlay
-        interval='3000'
-        transitionTime='1000'
+        interval='300000000'
+        transitionTime='1000000000'
         infiniteLoop='true'
       >
         <div>
@@ -66,31 +66,27 @@ class HomeComponent extends Component {
         </div>
 
         <div>
-          <Row className='card-container'>
-            {this.state.newtweets.reverse().map((tweet) => (
-              <Col lg={4} md={6} key={tweet.id}>
-                <Card id={tweet.id}>
-                  <Card.Body>
-                    <Card.Title className='mb-2 text-dark'>
-                      <img
-                        src={tweet.userImage}
-                        style={{ height: '60px', width: '60px' }}
-                        alt=''
-                      />
-                    </Card.Title>
-
-                    <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweet.user}
-                    </Card.Title>
-                    <Card.Text className='text-dark'>{tweet.user}</Card.Text>
-                    <Card.Subtitle className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
-                    </Card.Subtitle>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+          <h2 className='text-center'> List of Events </h2>
+          <div className='row'>
+            <table className='table table-striped table-bordered'>
+              <thead>
+                <tr>
+                  <th> Event Title </th>
+                  <th> Event Coordinator </th>
+                  <th> Event Description </th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.newtweets.reverse().map((tweets) => (
+                  <tr key={tweets.id}>
+                    <td> {tweets.userImage} </td>
+                    <td> {tweets.user}</td>
+                    <td> {tweets.text}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div>
