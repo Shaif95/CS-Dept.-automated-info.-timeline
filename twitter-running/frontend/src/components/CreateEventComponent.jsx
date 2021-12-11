@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import EventService from '../services/EventService'
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './res/grant.css'
 
@@ -150,13 +152,20 @@ class CreateEventComponent extends Component {
             </div>
             <div className='form-group'>
               <label style={{ color: 'black' }}> Event Description: </label>
-              <input
-                placeholder='Title'
-                name='title'
-                className='form-control'
+              <CKEditor name="description" 
+                    editor={ ClassicEditor }
+                    config={{
+                        removePlugins: ["EasyImage","ImageUpload","MediaEmbed"]
+                    }}
+                placeholder="Description" 
                 value={this.state.description}
-                onChange={this.changeLLastNameHandler}
-              />
+                onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        this.setState({description: data});
+                    } }
+           
+                
+                />
             </div>
 
             <div className='form-group'>
