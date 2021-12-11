@@ -36,19 +36,19 @@ class HomeComponent extends Component {
 
   change(str) {
     if (str.message === 'a') {
-
-      axios.get(config.geturl() + `tweets/` + str.name).then((res) => {
-      console.log(res.data) 
-    })
-       // window.location.reload(true)
-      
+      const element = document.getElementById(str.name) // Get element
+      if (element != null) {
+        element.style.visibility = 'visible'
+        console.log('changed on Database')
+      } else {
+        window.location.reload(true)
+      }
     }
 
     if (str.message === 'c') {
-     // window.location.reload(true)
+      window.location.reload(true)
     }
   }
-
 
   render() {
     return (
@@ -66,7 +66,7 @@ class HomeComponent extends Component {
         </div>
 
         <div>
-          <Row id = "container" className='card-container'>
+          <Row className='card-container'>
             {this.state.newtweets.map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card id={tweet.id}>
