@@ -36,13 +36,12 @@ class HomeComponent extends Component {
 
   change(str) {
     if (str.message === 'a') {
-      const element = document.getElementById(str.name) // Get element
-      if (element != null) {
-        element.style.visibility = 'visible'
-        console.log('changed on Database')
-      } else {
+      
+      axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
+      this.setState({ newtweets: res.data.tweets })
+    })
         window.location.reload(true)
-      }
+      
     }
 
     if (str.message === 'c') {
