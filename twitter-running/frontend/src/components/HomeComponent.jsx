@@ -38,7 +38,7 @@ class HomeComponent extends Component {
     if (str.message === 'a') {
 
       axios.get(config.geturl() + `tweets/` + str.name).then((res) => {
-      console.log("res.data.tweets") 
+      console.log(res.data) 
     })
        // window.location.reload(true)
       
