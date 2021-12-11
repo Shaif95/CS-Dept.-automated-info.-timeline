@@ -95,7 +95,7 @@ class HomeComponent extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.tweets.map((tweets) => (
+            {this.state.tweets.reverse().map((tweets) => (
               <tr key={tweets.user}>
                 <td> {tweets.user} </td>
                 <td> {tweets.text} </td>

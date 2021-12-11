@@ -36,18 +36,19 @@ class HomeComponent extends Component {
 
   change(str) {
     if (str.message === 'a') {
-      
-      axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
-      this.setState({ newtweets: res.data.tweets })
+
+      axios.get(config.geturl() + `tweets/` + str.name).then((res) => {
+      console.log("res.data.tweets") 
     })
-        window.location.reload(true)
+       // window.location.reload(true)
       
     }
 
     if (str.message === 'c') {
-      window.location.reload(true)
+     // window.location.reload(true)
     }
   }
+
 
   render() {
     return (
@@ -65,7 +66,7 @@ class HomeComponent extends Component {
         </div>
 
         <div>
-          <Row className='card-container'>
+          <Row id = "container" className='card-container'>
             {this.state.newtweets.map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card id={tweet.id}>
