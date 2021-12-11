@@ -67,7 +67,7 @@ class HomeComponent extends Component {
 
         <div>
           <Row className='card-container'>
-            {this.state.newtweets.map((tweet) => (
+            {this.state.newtweets.reverse().map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card id={tweet.id}>
                   <Card.Body>
