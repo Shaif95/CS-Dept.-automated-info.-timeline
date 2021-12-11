@@ -23,15 +23,15 @@ class ViewGrantComponent extends Component {
             <div>
                 <br></br>
                 <div  style={{color: 'black'}} className = "card col-md-6 offset-md-3">
-                    <h3 className = "text-center"> View Grant Details</h3>
+                    <h3 className = "text-center"> { this.state.Grant.title }</h3>
                     <div className = "card-body">
-                        <div className = "row">
+                        {/* <div className = "row">
                             <label style={{color: 'black'}} > Awards Title: </label>
                             <div> { this.state.Grant.title }</div>
-                        </div>
+                        </div> */}
             
                         <div className = "row">
-                            <label style={{color: 'black'}} > Awards Description: </label>
+                            {/* <label style={{color: 'black'}} > Awards Description: </label> */}
                             <div> { this.state.Grant.description }</div>
                         </div>
 
