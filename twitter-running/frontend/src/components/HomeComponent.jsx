@@ -38,22 +38,12 @@ class HomeComponent extends Component {
 
     console.log(str)
     console.log("woo")
-    if (str.message === 'a') {
-      const element = document.getElementById(str.name) // Get element
-      
-
-axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
-      this.setState({ newtweets: res.data.tweets })
-    })     
-
-      }
     
 
-    if (str.message === 'c') {
       axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
       this.setState({ newtweets: res.data.tweets })
     })     
-    }
+    
   }
 
   render() {
