@@ -17,6 +17,11 @@ class ListEventComponent extends Component {
 
         <br></br>
         <div className='row'>
+
+        
+            
+          
+
           <table className='table table-striped table-bordered'>
             <thead>
               <tr className='text-center'>
@@ -49,6 +54,18 @@ class ListEventComponent extends Component {
                   </button>{' '}
                 </td>
               </tr>
+
+              <tr>
+                <td>
+                  <Link to='/whitelist-users'>
+              <button variant='success'>
+                
+                Add Whitelist User
+              </button>
+            </Link>
+                </td>
+              </tr>
+              
             </tbody>
           </table>
         </div>

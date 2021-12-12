@@ -53,14 +53,7 @@ render() {
       <Meta title='Tweets' />
       <Container fluid className='home-container'>
         
-          <Row className='justify-content-end m-2'>
-            <Link to='/whitelist-users'>
-              <Button variant='success'>
-                <AddIcon />
-                Add Whitelist User
-              </Button>
-            </Link>
-          </Row>
+          
         
         
           <Container fluid>
