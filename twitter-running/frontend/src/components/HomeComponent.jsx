@@ -35,6 +35,9 @@ class HomeComponent extends Component {
   }
 
   change(str) {
+
+    console.log(str)
+    console.log("woo")
     if (str.message === 'a') {
       const element = document.getElementById(str.name) // Get element
       
@@ -58,7 +61,7 @@ axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
       <Carousel
         autoPlay
         interval='3000'
-        transitionTime='1000'
+        transitionTime='2000'
         infiniteLoop='true'
       >
         <div>
@@ -168,7 +171,7 @@ axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
 
         <div>
           <SockJsClient
-            url='https://baylor-board.herokuapp.com/websocket-chat/'
+            url='http://localhost:8080/websocket-chat/'
             topics={['/topic/user']}
             onConnect={console.log('Connection established!')}
             //onDisconnect={console.log("Disconnected!")}

@@ -23,6 +23,11 @@ class HomeComponent extends Component {
   }
 
   change(str) {
+
+if(document.getElementById(str.name) != null)
+{
+    console.log(str.name)
+    console.log("woo")
     if (str.message === 'a') {
       axios.put(
         config.geturl() + 'tweets/' + str.name + '/status?status=ACCEPTED'
@@ -44,6 +49,7 @@ class HomeComponent extends Component {
       document.getElementById(str.name).innerHTML = 'PENDING'
       document.getElementById(str.name).style.backgroundColor = '#008000'
     }
+  }
   }
 
   send(str) {
@@ -135,7 +141,7 @@ class HomeComponent extends Component {
 
         <div>
           <SockJsClient
-            url='https://baylor-board.herokuapp.com/websocket-chat/'
+            url='http://localhost:8080/websocket-chat/'
             topics={['/topic/user']}
             onConnect={console.log('Connection established!')}
             //onDisconnect={console.log("Disconnected!")}

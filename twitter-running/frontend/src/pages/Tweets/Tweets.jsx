@@ -5,15 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listTweets } from '../../actions/userActions'
 import Meta from '../../components/Meta'
 import './Tweets.scss'
+import axios from 'axios'
 import AddIcon from '@mui/icons-material/Add'
+import config from '../../services/config'
 import { Link } from 'react-router-dom'
 import SockJsClient from 'react-stomp'
 import Pagination from '../../components/Pagination'
 
 const Tweets = () => {
   const dispatch = useDispatch()
-  const tweetList = useSelector((state) => state.tweetList)
-  const { loading, error, tweets } = tweetList
+  var tweetList = useSelector((state) => state.tweetList)
+  var { loading, error, tweets } = tweetList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
@@ -30,13 +32,18 @@ const Tweets = () => {
   }
 
   function change(str) {
+    //console.log('changed on Database')
     if (str.message === 'a') {
       const element = document.getElementById(str.name) // Get element
       if (element != null) {
         element.style.visibility = 'visible'
         console.log('changed on Database')
       } else {
-        refreshPage()
+        //console.log('changed on Database')
+        axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
+      tweets = res.data.tweets 
+    })
+        
       }
     }
 
@@ -47,7 +54,7 @@ const Tweets = () => {
 
   const indexOfLastPost = currentPage * postsPerPage
   const indexOfFirstPost = indexOfLastPost - postsPerPage
-  const currentTweets = tweets.slice(indexOfFirstPost, indexOfLastPost)
+  var currentTweets = tweets.slice(indexOfFirstPost, indexOfLastPost)
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
