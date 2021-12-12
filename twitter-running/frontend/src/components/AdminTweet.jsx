@@ -141,7 +141,7 @@ if(document.getElementById(str.name) != null)
 
         <div>
           <SockJsClient
-            url='http://localhost:8080/websocket-chat/'
+            url='https://baylor-board.herokuapp.com/websocket-chat/'
             topics={['/topic/user']}
             onConnect={console.log('Connection established!')}
             //onDisconnect={console.log("Disconnected!")}
