@@ -171,7 +171,7 @@ axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
 
         <div>
           <SockJsClient
-            url=config.geturl() + 'websocket-chat/'
+            url='https://baylor-board.herokuapp.com/websocket-chat/'
             topics={['/topic/user']}
             onConnect={console.log('Connection established!')}
             //onDisconnect={console.log("Disconnected!")}
