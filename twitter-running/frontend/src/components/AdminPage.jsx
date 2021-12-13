@@ -65,6 +65,15 @@ class ListEventComponent extends Component {
             </Link>
                 </td>
               </tr>
+
+              <tr>
+                <td>
+                  {' '}
+                  <button style={{ marginLeft: '10px' }}>
+                    <Link to='/delete'>Delete All Tweets</Link>{' '}
+                  </button>{' '}
+                </td>
+              </tr>
               
             </tbody>
           </table>

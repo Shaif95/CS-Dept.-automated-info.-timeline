@@ -18,9 +18,11 @@ class Tweets extends Component {
     super(props)
 
     this.change = this.change.bind(this)
+    this.page = this.change.bind(this)
 
     this.state = {
       tweets: [],
+   
     }
   }
 
@@ -36,12 +38,13 @@ class Tweets extends Component {
     
   }
 
+
+
   componentDidMount() {
     axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
       this.setState({ tweets: res.data.tweets })
     })
   }
-
 
 
  
@@ -58,7 +61,7 @@ render() {
         
           <Container fluid>
             <Row className='card-container'>
-              {this.state.tweets.map((tweet) => (
+              {this.state.tweets.reverse().map((tweet) => (
                 <Col id='col' lg={4} md={6} key={tweet.id}>
                   <Card id={tweet.id}>
                     <Card.Body>

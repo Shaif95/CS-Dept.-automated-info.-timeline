@@ -14,6 +14,9 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Switch, Route } from 'react-router-dom'
 
+
+
+import DeleteTweets from './components/DeleteTweets'
 import ListEventComponent from './components/ListEventComponent'
 import HomeComponent from './components/HomeComponent'
 import CreateEventComponent from './components/CreateEventComponent'
@@ -52,6 +55,7 @@ function App() {
 
             <Route exact path='/login' component={Login} />
             <Route exact path='/registration' component={Register} />
+            <Route exact path='/delete' component={DeleteTweets} />
             <Route exact path='/forbidden' component={Forbidden} />
 
             <Route path='/awards' exact component={ListGrantsComponent}></Route>

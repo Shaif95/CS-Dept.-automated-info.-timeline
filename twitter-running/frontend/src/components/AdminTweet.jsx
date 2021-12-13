@@ -12,6 +12,7 @@ class HomeComponent extends Component {
 
     this.state = {
       myExternalLib: null,
+      currentTweets : null ,
       tweets: [],
     }
   }
