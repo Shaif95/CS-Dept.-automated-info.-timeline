@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import EventService from '../services/EventService'
 import './res/grant.css'
+import SockJsClient from 'react-stomp'
 
 class ListEventComponent extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class ListEventComponent extends Component {
   render() {
     return (
       <div>
+      &emsp;
         <h2 className='text-center'>Welcome to Admin Page</h2>
 
         <br></br>
@@ -32,7 +34,7 @@ class ListEventComponent extends Component {
               <tr>
                 <td>
                   {' '}
-                  <button style={{ marginLeft: '10px' }}>
+                  <button  style={{background:"skyblue"}}>
                     <Link to='/events'>Manage Events</Link>{' '}
                   </button>{' '}
                 </td>
@@ -40,7 +42,7 @@ class ListEventComponent extends Component {
               <tr>
                 <td>
                   {' '}
-                  <button style={{ marginLeft: '10px' }}>
+                  <button  style={{background:"skyblue"}}>
                     <Link to='/awards'>Manage Awards</Link>{' '}
                   </button>{' '}
                 </td>
@@ -49,31 +51,33 @@ class ListEventComponent extends Component {
               <tr>
                 <td>
                   {' '}
-                  <button style={{ marginLeft: '10px' }}>
+                  <button  style={{background:"skyblue"}}>
                     <Link to='/admintweet'>Manage Tweets</Link>{' '}
                   </button>{' '}
                 </td>
               </tr>
 
-              <tr>
+<tr>
                 <td>
-                  <Link to='/whitelist-users'>
-              <button variant='success'>
-                
-                Add Whitelist User
-              </button>
-            </Link>
+                  {' '}
+                  <button  style={{background:"skyblue"}}>
+                    <Link to='/whitelist-users'>Add Whitelist User</Link>{' '}
+                  </button>{' '}
                 </td>
               </tr>
+
 
               <tr>
                 <td>
                   {' '}
-                  <button style={{ marginLeft: '10px' }}>
+                  <button style={{background:"skyblue"}}  >
                     <Link to='/delete'>Delete All Tweets</Link>{' '}
                   </button>{' '}
                 </td>
               </tr>
+
+
+              
               
             </tbody>
           </table>

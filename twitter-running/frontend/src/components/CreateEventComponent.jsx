@@ -180,8 +180,8 @@ class CreateEventComponent extends Component {
 
               <label style={{ color: 'black' }}>
                 {' '}
-                in case of no image , put default image url :
-                https://i.ibb.co/nCNb8KX/photo-1541963463532-d68292c34b19-ixlib-rb-1-2.jpg{' '}
+                Paste the image link or use image/pdf upload servce ie. (https://ibb.co/) paste the download link in form :
+                https://i.ibb.co/DCQ8bBM/download.jpg{' '}
               </label>
             </div>
 

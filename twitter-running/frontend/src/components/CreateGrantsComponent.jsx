@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import GrantService from '../services/GrantService';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import './res/grant.css'
 
@@ -105,13 +107,27 @@ class CreateGrantsComponent extends Component {
                                             <input placeholder="Title" name="title" className="form-control" 
                                                 value={this.state.title} onChange={this.changeFirstNameHandler}/>
                                         </div>
-                                       
-                                        <div className = "form-group">
-                                            <label style={{color: 'black'}} > Award Description: </label>
-                                            <input placeholder="Title" name="title" className="form-control" 
-                                                value={this.state.description} onChange={this.changeLastNameHandler}/>
-                                        </div>
 
+
+                                        <div className='form-group'>
+              <label style={{ color: 'black' }}> Award Description: </label>
+              <CKEditor name="description" 
+                    editor={ ClassicEditor }
+                    config={{
+                        removePlugins: ["EasyImage","ImageUpload","MediaEmbed"]
+                    }}
+                placeholder="Description" 
+                value={this.state.description}
+                onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        this.setState({description: data});
+                    } }
+           
+                
+                />
+            </div>
+
+                                      
                         
 
                                 

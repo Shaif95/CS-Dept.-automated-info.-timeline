@@ -3,10 +3,11 @@ import { Row, Col, Card } from 'react-bootstrap'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
-import Image from './la.jpg'
-import Image1 from './chicago.jpg'
+import ReactHtmlParser from 'react-html-parser'; 
 import config from '../services/config'
 import SockJsClient from 'react-stomp'
+
+
 
 class HomeComponent extends Component {
   constructor(props) {
@@ -17,10 +18,30 @@ class HomeComponent extends Component {
       tweets: [],
       awards: [],
       newtweets: [],
+      images : []
     }
   }
 
+ importAll(r) {
+  return r.keys().map(r);
+}
+
+
+
   componentDidMount() {
+
+    this.state.images = this.importAll(require.context('./Images', false, /\.(png|jpe?g|svg)$/));
+
+    console.log(this.state.images)
+
+    console.log(this.state.images)
+
+
+
+    
+    console.log(config.getintv())
+        console.log(config.getslide())
+
     axios.get(config.geturl() + `events/slide`).then((res) => {
       this.setState({ events: res.data.events })
     })
@@ -31,7 +52,11 @@ class HomeComponent extends Component {
 
     axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
       this.setState({ newtweets: res.data.tweets })
+       //console.log(res.data.tweets)
     })
+
+     
+
   }
 
   change(str) {
@@ -50,37 +75,39 @@ class HomeComponent extends Component {
     return (
       <Carousel
         autoPlay
-        interval='3000'
-        transitionTime='2000'
+        interval={config.getintv()}
+        transitionTime={config.getslide()}
         infiniteLoop='true'
       >
-        <div>
-          <img src={Image} alt='' />
-        </div>
-        <div>
-          <img src={Image1} alt='' />
-        </div>
 
+     {this.state.images.map((image) => (
+              <div>
+          <img src={image.default}  alt='' />
+        </div>
+            ))}
+
+        
+        
         <div>
-          <Row className='card-container'>
-            {this.state.newtweets.reverse().map((tweet) => (
+          <Row  className='card-container'>
+            {this.state.newtweets.reverse().slice(0,40).map((tweet) => (
               <Col lg={4} md={6} key={tweet.id}>
                 <Card id={tweet.id}>
                   <Card.Body>
                     <Card.Title className='mb-2 text-dark'>
+                
                       <img
                         src={tweet.userImage}
                         style={{ height: '60px', width: '60px' }}
                         alt=''
                       />
+                           <Col >
+                        {tweet.user} 
+                             </Col >
                     </Card.Title>
 
-                    <Card.Title className='mb-2 text-dark'>
-                      UserName : {tweet.user}
-                    </Card.Title>
-                    <Card.Text className='text-dark'>{tweet.user}</Card.Text>
                     <Card.Subtitle className='text-dark'>
-                      Tweet: <span>{tweet.text}</span>
+                      <span>{tweet.text}</span>
                     </Card.Subtitle>
                   </Card.Body>
                 </Card>
@@ -90,7 +117,8 @@ class HomeComponent extends Component {
         </div>
 
         <div>
-          <h2 className='text-center'> List of Events </h2>
+        &emsp;
+          <h2 className='text-center'>  List of Events  </h2>
           <div className='row'>
             <table className='table table-striped table-bordered'>
               <thead>
@@ -105,7 +133,7 @@ class HomeComponent extends Component {
                   <tr key={events.id}>
                     <td> {events.title} </td>
                     <td> {events.coordinator}</td>
-                    <td> {events.description}</td>
+                    <td> { ReactHtmlParser (events.description) }  </td>
                   </tr>
                 ))}
               </tbody>
@@ -121,11 +149,11 @@ class HomeComponent extends Component {
                   <Card className='h-100'>
                     <Card.Body>
                       <Card.Title className='mb-2 text-dark'>
-                        Awards Title: {award.title}
+                       {award.title}
                       </Card.Title>
 
                       <Card.Subtitle className='text-dark'>
-                        Awards Description: {award.description}
+                       { ReactHtmlParser (award.description) }  
                       </Card.Subtitle>
                     </Card.Body>
                   </Card>
@@ -142,13 +170,13 @@ class HomeComponent extends Component {
                 <Card className='h-100'>
                   <Card.Body>
                     <Card.Title className='mb-2 text-dark'>
-                      Event Title: {event.title}
+                      {event.title}
                     </Card.Title>
                     <Card.Text className='text-dark'>
                       Event Coordinator: <span>{event.coordinator}</span>
                     </Card.Text>
                     <Card.Subtitle className='text-dark'>
-                      Event Description: {event.description}
+                      { ReactHtmlParser (event.description) } 
                     </Card.Subtitle>
 
                     <img src={event.images} style={{ height: '50% ' }} alt=''></img>

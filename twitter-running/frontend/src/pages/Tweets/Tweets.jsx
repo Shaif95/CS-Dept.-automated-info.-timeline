@@ -61,7 +61,7 @@ render() {
         
           <Container fluid>
             <Row className='card-container'>
-              {this.state.tweets.reverse().map((tweet) => (
+              {this.state.tweets.reverse().slice(0,40).map((tweet) => (
                 <Col id='col' lg={4} md={6} key={tweet.id}>
                   <Card id={tweet.id}>
                     <Card.Body>

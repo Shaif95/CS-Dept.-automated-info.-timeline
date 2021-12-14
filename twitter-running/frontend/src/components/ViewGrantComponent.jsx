@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GrantService from '../services/GrantService'
+import ReactHtmlParser from 'react-html-parser'; 
 import './res/grant.css'
 
 class ViewGrantComponent extends Component {
@@ -32,7 +33,7 @@ class ViewGrantComponent extends Component {
             
                         <div className = "row">
                             {/* <label style={{color: 'black'}} > Awards Description: </label> */}
-                            <div> { this.state.Grant.description }</div>
+                            <div>  { ReactHtmlParser  ( this.state.Grant.description) }</div>
                         </div>
 
                        

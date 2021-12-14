@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EventService from '../services/EventService'
+import ReactHtmlParser from 'react-html-parser'; 
 import './res/grant.css'
 
 class ListEventComponent extends Component {
@@ -39,6 +40,7 @@ class ListEventComponent extends Component {
     render() {
         return (
             <div>
+              &emsp;
                  <h2 className="text-center">Event List</h2>
                  <div className = "row">
                     <button style={{marginLeft: "20px"}} className="btn btn-primary" onClick={this.addEvent}> Add Event</button>
@@ -62,7 +64,7 @@ class ListEventComponent extends Component {
                                         <tr key = {event.id}>
                                              <td> {event.title} </td>   
                                              <td> {event.coordinator}</td>
-                                             <td> {event.description}</td>
+                                             <td> { ReactHtmlParser  (event.description) } </td>
                                              <td>
  <button onClick={ () => this.editEvent(event.id)} className="btn btn-info">Update </button></td>
 <td><button style={{marginLeft: "10px"}}onClick={()=>this.deleteEvent(event.id)}className="btn btn-danger">Delete</button></td>

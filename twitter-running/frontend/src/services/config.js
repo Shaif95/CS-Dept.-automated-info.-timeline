@@ -2,6 +2,11 @@
 
 const BASE_URL = "https://baylor-board.herokuapp.com/"
 
+
+var SLIDE = 1000
+
+var INTV = 5000
+
 class config {
 
     geturl(){
@@ -10,6 +15,29 @@ class config {
         
     }
 
+    setslide(s){
+
+        SLIDE = s;
+        
+    }
+
+    getslide(){
+
+        return SLIDE;
+        
+    }
+
+    setintv(s){
+
+        INTV = s;
+        
+    }
+
+    getintv(){
+
+        return INTV;
+        
+    }
 
 }
 

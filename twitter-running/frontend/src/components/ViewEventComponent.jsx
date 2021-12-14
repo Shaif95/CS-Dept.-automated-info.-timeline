@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EventService from '../services/EventService'
+import ReactHtmlParser from 'react-html-parser'; 
 import './res/grant.css'
 
 class ViewEventComponent extends Component {
@@ -37,7 +38,7 @@ class ViewEventComponent extends Component {
                   <div> {this.state.event.coordinator}</div>
                 </div>
                 <div className='row'>
-                  <div> {this.state.event.description}</div>
+                  <div>  { ReactHtmlParser  (this.state.event.description) }</div>
                 </div>
 
                 <div className='row'>

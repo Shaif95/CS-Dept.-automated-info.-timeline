@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import GrantService from '../services/GrantService'
+import ReactHtmlParser from 'react-html-parser'; 
 import './res/grant.css'
 
 class ListGrantComponent extends Component {
@@ -39,6 +40,7 @@ class ListGrantComponent extends Component {
     render() {
         return (
             <div>
+              &emsp;
                  <h2 className="text-center">Awards List</h2>
                  <div className = "row">
                     <button style={{marginLeft: "20px"}} className="btn btn-primary" onClick={this.addGrant}> Add Award</button>
@@ -60,7 +62,7 @@ class ListGrantComponent extends Component {
                                         Grant => 
                                         <tr key = {Grant.id}>
                                              <td> {Grant.title} </td>   
-                                             <td> {Grant.description}</td>
+                                             <td> { ReactHtmlParser  ( Grant.description) }</td>
                                              <td>
  <button style={{marginLeft: "20px"}} onClick={ () => this.viewGrant(Grant.id)} className="btn btn-info">View </button>
                                              </td>
