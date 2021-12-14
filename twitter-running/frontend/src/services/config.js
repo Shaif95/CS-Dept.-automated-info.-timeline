@@ -3,9 +3,9 @@
 const BASE_URL = "https://baylor-board.herokuapp.com/"
 
 
-var SLIDE = 1000
+var SLIDE = 2000
 
-var INTV = 5000
+var INTV = 6000
 
 class config {
 
