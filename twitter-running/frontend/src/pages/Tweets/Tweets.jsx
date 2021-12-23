@@ -22,6 +22,7 @@ class Tweets extends Component {
 
     this.state = {
       tweets: [],
+      url : null
    
     }
   }
@@ -44,6 +45,9 @@ class Tweets extends Component {
     axios.get(config.geturl() + `tweets?status=ACCEPTED`).then((res) => {
       this.setState({ tweets: res.data.tweets })
     })
+
+    this.url = config.geturl() + 'websocket-chat/';
+    
   }
 
 
@@ -90,7 +94,7 @@ render() {
 
       <div>
         <SockJsClient
-          url='https://baylor-board.herokuapp.com/websocket-chat/'
+          url={this.url}
           topics={['/topic/user']}
           onConnect={console.log('Connection established!')}
           //onDisconnect={console.log("Disconnected!")}

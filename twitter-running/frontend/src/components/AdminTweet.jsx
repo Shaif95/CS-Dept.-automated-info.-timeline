@@ -14,6 +14,7 @@ class HomeComponent extends Component {
       myExternalLib: null,
       currentTweets : null ,
       tweets: [],
+      url : null
     }
   }
 
@@ -21,6 +22,9 @@ class HomeComponent extends Component {
     axios.get(config.geturl() + 'tweets').then((res) => {
       this.setState({ tweets: res.data.tweets })
     })
+
+    this.url = config.geturl() + 'websocket-chat/';
+
   }
 
   change(str) {
@@ -142,7 +146,7 @@ if(document.getElementById(str.name) != null)
 
         <div>
           <SockJsClient
-            url='https://baylor-board.herokuapp.com/websocket-chat/'
+            url={this.url}
             topics={['/topic/user']}
             onConnect={console.log('Connection established!')}
             //onDisconnect={console.log("Disconnected!")}
